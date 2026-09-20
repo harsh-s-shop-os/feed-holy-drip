@@ -2,6 +2,26 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-20 — Every post is now a recommendation, written off HolyDrip's actual Instagram
+
+All fifteen feed posts were rewritten. The old set read as strategy theses aimed at the ShopOS team ("Only a marketplace can style across brands", "Your sellers will pay for the ads you have not launched") and several of them claimed work that was already finished. Neither is what the feed is for: every card is a suggestion the agent is making, with the draft behind it, and nothing moves until the brand approves.
+
+**What changed in the writing.** Titles now propose an action instead of announcing one. The body says what the agent found, what it suggests doing, and what approving actually does. The button is the permission, not a project. The two business-case arguments from the team meeting are gone, and the cards make those arguments by showing the work instead.
+
+**What changed in the thinking.** The posts are written off the live @holydrip.club account, not off the one product page. The account is a curator: identity posts land at 550k likes, the drop reel lands at 8k but takes 4,535 comments because "comment DRIP" is the checkout, and the commerce model is "we tested twenty brands, picked one, got an exclusive colour". So the cards treat the store as the product. Visibility is about the store being findable, not the tee. Ads are about comments, warm lists and the manifesto reels, not a seller rate card. Storefront is three CMS blocks that work over a headless custom stack, no Shopify anywhere.
+
+**The fifteen, three per column.**
+
+- **Catalog.** Set the HolyDrip shot standard before the second brand's drop lands; give every drop a ranking card instead of a spec sheet; lead the drop page with the colour only members can get.
+- **Creatives.** Announce the next drop as a manifesto, the format that earns 550k; style the drop for the three body types the account already coaches; turn "we tested twenty" into a screenshot-able carousel. Each of these describes a new banner to generate, which is the point of a creative post.
+- **Ads.** Boost the drop reel for comments rather than clicks; retarget the DRIP commenters who never unlocked; put the manifesto reels in front of lookalikes of the engagers.
+- **Storefront.** Put the HolyDrip verdict above Subtle's spec on the drop page; let members skip the gate on the second drop; keep an archive of drops that have closed.
+- **Visibility.** Own the answer to where Indian men buy premium basics; make every drop a permanent best-for-Indian-men page; get engines to read HolyDrip as a brand rather than a hashtag.
+
+**Also.** Charts dropped from six to two, both carrying real numbers (likes by post type, and the twenty-brand ranking). The intro card no longer says each card is finished work. The CMS connect card lists what is actually waiting on it. The Meta connect card now follows the reel-boost post, and the CMS one follows the member-gate post.
+
+**Known limits.** Engagement figures are read off the public account; unlock and member counts (1,210 unlocked, 3,325 never unlocked) are placeholders. The AI visibility numbers are still the placeholder GEO object. Creative posts reuse existing assets as stand-ins for banners that do not exist yet, and three of those are Instagram grid covers at 360px, which look soft at card size.
+
 ## 2026-09-20 — Rebuilt on the latest feed-cosmix code (266e3bd), HolyDrip content re-applied
 
 The first HolyDrip commit was made on a copy of feed-cosmix that was 45 commits behind. This one takes feed-cosmix's current `index.html` as the base and re-applies every HolyDrip change on top, so the fork now carries everything the Cosmix build has learned since 18 September:

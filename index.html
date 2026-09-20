@@ -3936,134 +3936,83 @@
   GEO.lowWeight = GEO.lowThree.reduce((n, d) => n + d.weight, 0);
 
   const POSTS = [
-    { agent:'creative', time:'12 min', ratio:'square', campaign:'Poster Format',
-      images:['assets/hd-ultimate-tee.jpg','assets/hd-heavy-not-hot.jpg','assets/hd-eight-colours.jpg'],
-      title:'The poster format is a catalog format waiting to be used',
-      sub:'The big-caps look that built the following is already on the drop page. It works as a PDP hero and a category banner without a new shoot. Same treatment, three placements, one asset run.',
-      cta:{ label:'Generate placements' } },
-
-    { agent:'performance', time:'28 min',
-      chart:{
-        title:'Seller-funded share by placement',
-        max:110,
-        note:'Drop features are the easiest slot to sell first',
-        rows:[
-          { label:'Homepage takeover',  value:90 },
-          { label:'Category top slot',  value:85 },
-          { label:'In-feed placement',  value:70 },
-          { label:'Drop feature',       value:96, brand:true }
-        ]
-      },
-      title:'Your sellers will pay for the ads you have not launched',
-      sub:'Marketplace media is a revenue line, not a cost line. Premium brands onboarding onto a curated platform expect placement and fund it themselves. Four slots are ready to price.',
-      cta:{ label:'Price the slots' } },
-
-    { agent:'visibility', time:'35 min',
-      rings:{ score:12, rings:[
-        { label:'Coverage',  value:14, color:'#ff375f' },
-        { label:'Citations', value:2,  color:'#a8ff2e' },
-        { label:'Structure', value:21, color:'#22d3ee' }
-      ]},
-      title:'Nobody has claimed premium Indian menswear on the engines yet',
-      sub:'Ask an assistant where to buy a heavyweight Indian tee and it names generalists. A GEO score of 12 means the answer is unclaimed, and claiming it before launch is cheaper than taking it after.',
-      cta:{ label:'Open report' } },
-
-    { agent:'storefront', time:'14 min', ratio:'square',
+    { agent:'storefront', time:'12 min', ratio:'square',
       images:['assets/hd-model-front.jpg','assets/hd-ghost.jpg','assets/hd-colour-01-frost.jpg'],
-      title:'One tee, three shot styles, and this is a single brand',
-      sub:'On-model, ghost mannequin and flat cutout all sit on the same listing. Multiply that by every brand you onboard and the grid reads like nine stores. One shot standard at intake fixes it before it reaches a page.',
-      cta:{ label:'Set the shot standard' } },
+      title:'Set the HolyDrip shot standard before the second brand’s drop lands',
+      sub:'Subtle’s listing mixes on-model, ghost and flat cutout, all shot in Subtle’s frame. The next brand will arrive in its own. Worth defining one HolyDrip standard now, black ground, crown mark, on-model first, so every drop looks like yours and not the seller’s.',
+      cta:{ label:'Approve the standard' } },
 
-    { agent:'creative', time:'45 min', ratio:'square', campaign:'Made in Tiruppur',
-      images:['assets/hd-craftsman.jpg'],
-      title:'The mill is the story nobody else can tell',
-      sub:'Made-in reels outperform product reels on this account. Every brand you onboard has a mill, a karigar or a town behind it, and none of it reaches the listing. This is the frame to build from.',
-      cta:{ label:'Start creating' } },
+    { agent:'creative', time:'20 min', ratio:'square', campaign:'Manifesto Drop',
+      images:['assets/hd-reel-indian-men.jpg','assets/hd-ultimate-tee.jpg'],
+      title:'Announce the next drop the way your 550k posts talk',
+      sub:'Drop reels land around 8k. The identity posts land at half a million. The next drop could run as a manifesto, one serif line on maroon velvet, the tee appearing only in the last frame. Same format that already works, pointed at a product.',
+      cta:{ label:'Generate 3 versions' } },
 
-    { agent:'storefront', time:'1 hr', ratio:'square', fit:'contain', fitBg:'#f3f1ec',
-      images:['assets/hd-size-chart.jpg'],
-      title:'The size guide is a picture, so nothing can read it',
-      sub:'Chest, length, sleeve and waist for six sizes are baked into one image. A buyer cannot filter on it, a fit finder cannot use it, and an answer engine cannot quote it. Move it into the product record.',
-      cta:{ label:'Convert to attributes' } },
-
-    { agent:'visibility', time:'1 hr',
+    { agent:'performance', time:'35 min',
       chart:{
-        title:'Where HolyDrip can be found',
-        max:100,
-        note:'Findable from a feed, not from a question',
+        title:'Likes by post type, last twelve posts',
+        max:600, unit:'k',
+        note:'Two posts carry the account. Neither one sells anything.',
         rows:[
-          { label:'Instagram reach',             value:88 },
-          { label:'Google, category terms',      value:9 },
-          { label:'AI answers, category prompts', value:3, brand:true }
+          { label:'Identity manifesto',   value:557, brand:true },
+          { label:'Celebrity breakdown',  value:235 },
+          { label:'Drop reel',            value:8 },
+          { label:'Drip tips',            value:6 }
         ]
       },
-      title:'You are discoverable on social and invisible in search',
-      sub:'Four hundred thousand people can find you on a feed. Almost nobody can find you from a question, because the reels rank and the product pages do not exist yet.',
+      title:'Put the manifesto reels in front of lookalikes of your engagers',
+      sub:'The two big posts are the best top of funnel you have, and they have only ever been shown to people the algorithm picked. Running both as awareness ads to lookalikes of your engagers would buy reach for the vibe. No product in frame, no CTA.',
+      cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
+
+    { agent:'storefront', time:'45 min',
+      chart:{
+        title:'The verdict, drafted as a catalog module',
+        max:105,
+        note:'Drafted for the Cloud Tee. One card per drop from here on.',
+        rows:[
+          { label:'Subtle, your pick', value:91, brand:true },
+          { label:'Uniqlo',            value:86 },
+          { label:'Zara',              value:82 },
+          { label:'M&S',               value:81 },
+          { label:'H&M',               value:72 }
+        ]
+      },
+      title:'Give every drop a ranking card instead of a spec sheet',
+      sub:'You tested twenty tees on GSM, breathability, fit, fabric, price and longevity. That verdict lives in a reel and nowhere on the drop page. It could be a catalog module, tested twenty, ranked one, with the six scores under it, filled once per drop.',
+      cta:{ label:'Approve the module' } },
+
+    { agent:'creative', time:'1 hr', ratio:'square', campaign:'Fit Rules',
+      images:['assets/hd-styled-trio.jpg','assets/hd-reel-v-shaped.jpg'],
+      title:'Style the drop for the three bodies you already coach',
+      sub:'Your drip tips break down V-shaped, shorter and broader, and tall and lean. The Cloud Tee could be shot on all three as one triptych, each panel captioned with the rule you already teach. It sells the tee by teaching, which is what the account does anyway.',
+      cta:{ label:'Generate the triptych' } },
+
+    { agent:'storefront', time:'1 hr', ratio:'square',
+      images:['assets/hd-brand-story.jpg','assets/hd-ultimate-tee.jpg'],
+      title:'Put the HolyDrip verdict above Subtle’s spec on the drop page',
+      sub:'The page reads as Subtle from the first pixel. The reason to buy here rather than from Subtle is your test, and it is nowhere on the page. A block at the top could carry it: tested twenty, picked one, made an exclusive colour. Then the product.',
+      cta:{ label:'Publish the block' } },
+
+    { agent:'creative', time:'2 hr', ratio:'square', campaign:'Tested 20',
+      images:['assets/hd-heavy-not-hot.jpg','assets/hd-lasts-4-years.jpg','assets/hd-lab-qr.jpg','assets/hd-reel-ultimate-indian-tee.jpg'],
+      title:'Turn “we tested twenty” into a carousel people can screenshot',
+      sub:'It is the strongest claim you make about a drop and it only exists as a spoken line in a reel. Six slides, one criterion each, the tee on a lab bench, Subtle’s number against the field. Saveable, shareable, and it outlives the reel.',
+      cta:{ label:'Generate the carousel' } },
+
+    { agent:'visibility', time:'3 hr',
+      rings:{ score:GEO.score, rings:GEO.lowThree.map((d, i) => ({
+        label:d.short, full:`${d.label} · ${d.weight}% of the score`, value:d.value,
+        color:['#ff375f','#a8ff2e','#22d3ee'][i] })) },
+      title:'Own the answer to where Indian men buy premium basics',
+      sub:`Ask an engine that today and it names Myntra, Ajio and Amazon. HolyDrip has 410k followers and nothing an engine can read, which is a score of ${GEO.score}. The three lowest dimensions carry ${GEO.lowWeight}% of the weight, and all three are fixed by one page that explains what HolyDrip is.`,
       cta:{ label:'Open report' } },
 
-    { agent:'storefront', time:'2 hr',
-      chart:{
-        title:'Attributes filled per category',
-        max:100,
-        note:'Occasion, fabric and sleeve blank on most of the ethnic range',
-        rows:[
-          { label:'Tees',        value:92 },
-          { label:'Sweatshirts', value:71 },
-          { label:'Bottoms',     value:64 },
-          { label:'Eyewear',     value:45 },
-          { label:'Kurtas',      value:38, brand:true }
-        ]
-      },
-      title:'Kurtas are missing the three attributes buyers filter on',
-      sub:'Occasion, fabric and sleeve are blank across most of the ethnic catalog, so the filters return thin results and the category looks emptier than it is.',
-      cta:{ label:'Fill the gaps' } },
-
-    { agent:'creative', time:'2 hr', ratio:'wide', campaign:'This With That',
-      images:['assets/hd-styled-trio.jpg'],
-      title:'Only a marketplace can style across brands',
-      sub:'Pairing one seller\'s tee with another seller\'s trousers is a shot a single-brand store cannot take. It gives every product a second reason to be bought and sells two sellers at once.',
-      cta:{ label:'Generate versions' } },
-
-    { agent:'storefront', time:'3 hr', ratio:'square',
-      images:['assets/hd-collar-navy.jpg','assets/hd-texture.jpg'],
-      title:'Subtle shoots the macro. Make every brand shoot it.',
-      sub:'Premium is argued at 2mm of flute and a bio-washed hand feel, and this listing shows both. Most sellers send the full garment and nothing closer. Add the macro pair to the intake spec.',
-      cta:{ label:'Add to intake spec' } },
-
-    { agent:'performance', time:'5 hr',
-      chart:{
-        title:'Reel formats by hold rate',
-        max:100,
-        note:'Three formats worth money on launch day',
-        rows:[
-          { label:'Drip Tips',         value:74, brand:true },
-          { label:'Made in Tiruppur',  value:68 },
-          { label:'This With That',    value:61 },
-          { label:'Trend explainers',  value:39 }
-        ]
-      },
-      title:'The reels already ran your creative test',
-      sub:'Three formats consistently outperform on organic, at zero media cost. Those are the ones worth budget on launch day. The rest stay free.',
-      cta:{ label:'Build the launch sets' } },
-
-    { agent:'storefront', time:'3 hr',
-      chart:{
-        title:'The comparison table, as buyers see it',
-        max:105,
-        note:'Exists on one listing. Should be a block every brand fills at onboarding',
-        rows:[
-          { label:'Subtle Cloud Tee', value:91, brand:true },
-          { label:'Uniqlo',           value:86 },
-          { label:'Zara',             value:82 },
-          { label:'M&S',              value:81 },
-          { label:'H&M',              value:72 }
-        ]
-      },
-      title:'The comparison table is doing more work than the product page',
-      sub:'Ranking the tee against Uniqlo, Zara, M&S and H&M gives a buyer a reason in four seconds. It lives on one listing. Make it a block every brand fills in when they onboard.',
-      cta:{ label:'Make it a module' } }
+    { agent:'storefront', time:'5 hr', ratio:'square',
+      images:['assets/hd-eight-colours.jpg','assets/hd-rail-8.jpg'],
+      title:'Lead the drop page with the colour only members can get',
+      sub:'Subtle made a colourway exclusively for the HolyDrip community and it currently sits fourth in a rail of eight. Moving it to the first slot and marking it exclusive puts the membership argument in the first thing a buyer sees. Nothing else on the page changes.',
+      cta:{ label:'Apply to the drop' } }
   ];
-
 
   /* ---------------- icons (lucide) ---------------- */
   const I = {
@@ -4374,28 +4323,51 @@
 
   // short, data-led posts: a badge, a small table, then the decision
   const TEXT_POSTS = [
-    { agent:'performance', time:'6 min', badge:['Watching','info'],
-      rows:[['Instagram followers','409k'],['Reachable off-platform','0'],
-            ['Retargetable after a visit','0'],['App install campaigns','none']],
-      title:'Four hundred thousand followers is an audience, not a buyer list',
-      sub:'Organic reach built the brand. It cannot retarget an abandoned bag, reach the followers who never see a post, or drive the app installs the catalog lives in.',
-      cta:{ label:'Draft the launch plan', logo:'meta', brandColor:'#0866FF' } },
+    { agent:'performance', time:'6 min', badge:['Needs you','info'],
+      rows:[['Comments on the drop reel','4,535'],['Likes on the same reel','8,305'],
+            ['Access sent by hand','every one'],['Paid reach so far','none']],
+      title:'Boost the drop reel for comments, not for clicks',
+      sub:'Four and a half thousand people typed DRIP under one reel. That comment is your checkout. The same reel could run as an engagement ad with an automated reply that sends the access link, so it does what the organic post does, to people who never saw it.',
+      cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
-    { agent:'storefront', time:'40 min', badge:['Needs you','info'],
-      rows:[['Stack','Custom, not Shopify'],['Connector','Headless CMS over API'],
-            ['Theme edits needed','0'],['Ready to publish','8 colourways']],
-      title:'No Shopify, no problem',
-      sub:'The same listing controls run over a headless CMS on your own stack. Content model, attribute rules and publishing arrive through the API instead of a theme. Nothing goes live until you approve.',
-      cta:{ label:'Connect the CMS' } },
+    { agent:'performance', time:'50 min', badge:['Watching','info'],
+      rows:[['Commented DRIP','4,535'],['Unlocked member price','1,210'],
+            ['Commented, never unlocked','3,325'],['Reachable as post engagers','all of them']],
+      title:'Retarget the DRIP commenters who never unlocked',
+      sub:'Everyone who commented is a warm list Meta already holds as post engagers, so this needs no pixel and no site. Build that audience, show them the exclusive colour once, and stop there.',
+      cta:{ label:'Approve the audience', logo:'meta', brandColor:'#0866FF' } },
 
-    { agent:'visibility', time:'20 min', badge:['Sitting idle','warn'],
-      rows:[['260 GSM, 2mm ottoman knit','on one page, not marked up'],
-            ['Lasts 50+ washes, lab tested','image only'],
-            ['Made in Tiruppur, 60+ craftsmen','no entity record'],
-            ['Ranked against Uniqlo, Zara, H&M','no page explains it']],
-      title:'The catalog work is also the visibility work',
-      sub:'GSM, knit, wash count and origin are exactly the facts an answer engine lifts and quotes. None of this needs to be created. It needs to be moved into the record and marked up.',
-      cta:{ label:'Start with the spec block' } }
+    { agent:'storefront', time:'2 hr', badge:['Needs you','info'],
+      rows:[['Members who unlocked','1,210'],['Asked for the number again','every drop'],
+            ['Drops so far','1'],['Proposed','remember the unlock']],
+      title:'Let members skip the gate on the second drop',
+      sub:'Every drop asks for a phone number again, including from the people who already gave one. Storing the unlock would land a returning member on the price instead of a form. First-timers still see the gate.',
+      cta:{ label:'Approve the change' } },
+
+    { agent:'storefront', time:'4 hr', badge:['Sitting idle','warn'],
+      rows:[['Drops completed','1'],['Pages that outlive a drop','0'],
+            ['Products live on the site','1'],['Proposed','/drops/cloud-tee, permanent']],
+      title:'Keep an archive of the drops that have closed',
+      sub:'One product at a time means the site forgets everything before it. A permanent page per finished drop, carrying the verdict, the exclusive and a sold out mark, lets the vibe accumulate instead of resetting every time.',
+      cta:{ label:'Approve the archive' } },
+
+    { agent:'visibility', time:'30 min', badge:['Draft ready','ok'],
+      rows:[['Answers','the heavyweight tee question'],
+            ['Cited there today','myntra, amazon.in, reddit'],
+            ['Goes to','/tested/heavyweight-tees'],
+            ['Still needs','FAQ block and FAQPage markup']],
+      title:'Make every drop a permanent best-for-Indian-men page',
+      sub:'Engines quote ranked tests that show their method, and yours has one that is only ever spoken aloud. Published as a page, with Subtle at the top, it answers the question directly. Repeat it per category as drops land and the store gets cited, not the product.',
+      cta:{ label:'Review the draft' } },
+
+    { agent:'visibility', time:'6 hr', badge:['Sitting idle','warn'],
+      rows:[['410k followers','no organisation record'],
+            ['Two handles, one brand','not linked anywhere'],
+            ['The twenty-brand test','not attributed to HolyDrip'],
+            ['Brand mentions score', `${GEO.dims[3].value} of 100`]],
+      title:'Get the engines to read HolyDrip as a brand, not a hashtag',
+      sub:'There is no record anywhere an engine looks that says HolyDrip is a store. Organization markup linking the site, both Instagram handles and the founder story would make the name resolve to something, which is the cheapest of the three visibility fixes.',
+      cta:{ label:'Review the markup' } }
   ];
 
   const ALL_POSTS = [...POSTS, ...TEXT_POSTS, ...DECK_ONLY];
@@ -4454,9 +4426,9 @@
   };
   // catalog is its own segment: the product feed itself, mostly the creative director
   const CATALOG = new Set([
-    'One tee, three shot styles, and this is a single brand',
-    'Kurtas are missing the three attributes buyers filter on',
-    'Subtle shoots the macro. Make every brand shoot it.'
+    'Set the HolyDrip shot standard before the second brand’s drop lands',
+    'Give every drop a ranking card instead of a spec sheet',
+    'Lead the drop page with the colour only members can get'
   ]);
   const sectorOf = (p) => CATALOG.has(p.title) ? 'catalog' : SECTOR_BY_AGENT[p.agent];
   const byAgent = (k) => ALL_POSTS.filter(p => sectorOf(p) === k);
@@ -4473,8 +4445,8 @@
     shopify: {
       agent:'storefront', name:'HolyDrip CMS',
       title:'Connect the CMS to publish the changes, not only draft them',
-      sub:'Attributes, size data and the spec block are drafted already. Pushing them live needs write access to your stack.',
-      items:['Publish attribute and spec updates','Update a product page','Read live stock and members'],
+      sub:'The verdict block, the drop archive and the member unlock are drafted already. Pushing any of them live needs write access to your stack.',
+      items:['Publish a block to the drop page','Remember a member unlock','Keep a drop page after it closes'],
       logo:'plug', color:'currentColor'
     }
   };
@@ -4511,7 +4483,7 @@
   // Not a post (not in ALL_POSTS), so it never enters the deck or the agent chips
   const INTRO = {
     title:'This is your feed',
-    sub:'Every day your agents post recommendations to improve your creative, ads, catalog, visibility and CRM. Each card is finished work, ready to go. Approve it to publish or finalise the action, remix it with the agent that made it, or jam with the human team.',
+    sub:'Every day your agents post recommendations to improve your creative, ads, catalog, visibility and CRM. Each one is a suggestion with the work already drafted behind it. Nothing happens until you approve it, and you can remix it with the agent that made it, or jam with the human team first.',
     slides:[
       // each slide is a finished illustration; c/c2 stay as the fallback wash while it loads
       // all three images share one near-black blue, so the colour that shows
@@ -5241,9 +5213,10 @@
   // removed, commented out) independently of this file, and an index here
   // would silently point at the wrong card the next time it does
   const FEED_CONNECT_AFTER = {
-    meta: POSTS.find(p => p.title === 'Your sellers will pay for the ads you have not launched'),
-    shopify: TEXT_POSTS.find(p => p.title === 'No Shopify, no problem')
+    meta: ALL_POSTS.find(p => p.title === 'Boost the drop reel for comments, not for clicks'),
+    shopify: ALL_POSTS.find(p => p.title === 'Let members skip the gate on the second drop')
   };
+
   document.getElementById('feed').insertAdjacentHTML('beforeend',
     (introWanted ? introCard() : '') +
     FEED_ORDER.map(c => card(c) +
