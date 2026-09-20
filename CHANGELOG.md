@@ -2,6 +2,19 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-20 — HolyDrip: the whole prototype rebranded from Cosmix
+
+This fork now reads as HolyDrip, the premium menswear marketplace (holydrip.club, @holydrip.club). Nothing structural changed; every piece of brand content did.
+
+- **Workspace and brand memory.** Default store is holydrip.club, workspace badge and deck sidebar carry the HOLY DR/P mark, the finish screen says "HolyDrip, welcome to your feed". The Brand column now reads HolyDrip: marketplace positioning, Subtle's Cloud Tee as the first drop, member pricing, Tiruppur, the Uniqlo/Zara/M&S/H&M comparison, audience, and Myntra / Ajio / Tata CLiQ / The Collective as industry leaders. Brand kit is black, maroon and steel blue with Bodoni Moda headings and Geist body, read off the live site and the Instagram grid.
+- **Feed: 18 cards, three per column, no more.** Catalog (shot standard at intake, attribute coverage by category, the macro pair), Creatives (the poster format, the Tiruppur mill story, cross-brand styling), Ads (seller-funded placements, followers are not a buyer list, reels as the creative test), Storefront (no Shopify: headless CMS, the size guide is a picture, the comparison table as a module), Visibility (unclaimed category answer, social-rich search-invisible, spec facts not marked up). The deck-only extras are gone; the free feed and the Pro columns show the same 15 posts plus the three Signals.
+- **Signals.** The three journeys are now about member-price unlocks: unlocked-but-never-bought (WhatsApp), first-drop buyers get the next drop early (email), and lapsed unlocks asked a question (WhatsApp). Sources: the Shopify source is now "HolyDrip store"; Klaviyo, WhatsApp and support stay.
+- **Connect cards.** The Shopify connect card is now "Connect the CMS", with a plug icon instead of the Shopify mark, because HolyDrip runs a custom stack.
+- **Stories.** Rings and slides repainted from the HolyDrip palette. "Popular ads" is now "Top reels" and shows three real Instagram covers.
+- **Assets.** Every `cx-*` file, the Cosmix mark and the unused Shopify logo are deleted. 40 new `hd-*` files pulled from holydrip.club, its CDN, the drop-page video and the Instagram grid: the four LP poster frames, the PDP gallery (on-model, ghost mannequin, collar macro, skin-tone guide, size lineup, colour rail), the eight colourway cutouts, texture and craftsman shots, the size chart, lab QR, brand story, both wordmarks, and seven reel covers. Only 25 are referenced today; the rest sit in `assets/` ready to slot in.
+
+**Known limits.** Every number on a card is a placeholder. The Instagram covers are grid size (360px) and look soft on a large card, so they only appear in stories and small slots. Celebrity reel covers (Diljit, Raghav Juyal, Jacob Batalon, Vir Das) were deliberately left out. The team's catalog images have not arrived yet, so the catalog cards lean on Subtle's one listing.
+
 ## 2026-09-18 — Data cards: the table never touches the CTA
 
 The key-value table on data cards (e.g. "Five products are disapproved on Meta") sat flush against the CTA bar below it. It now keeps the same air on every side — 12px side insets, 14px above and 14px below — as a written rule in the stylesheet, so it holds wherever the table appears (feed, deck, setup columns) and whatever follows it.

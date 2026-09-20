@@ -2116,7 +2116,7 @@
     transition:transform .24s cubic-bezier(.2,.9,.3,1);
   }
   .scrim.open .modal{transform:none}
-  .modal-hero{position:relative;aspect-ratio:946/465;background:#cfe6f5}
+  .modal-hero{position:relative;aspect-ratio:946/465;background:#0b0b0b}
   .modal-hero img{width:100%;height:100%;object-fit:cover;display:block}
   .modal-close{
     position:absolute;top:14px;right:14px;
@@ -2132,7 +2132,7 @@
   .modal-body p{font-size:15px;line-height:22px;color:var(--fg-2);margin:0 0 24px}
 
   .modal.jam{width:min(520px,100%)}
-  .modal.jam .modal-hero{aspect-ratio:1000/530;background:#1e4b3f}
+  .modal.jam .modal-hero{aspect-ratio:1000/530;background:#5c1421}
   .modal.jam .modal-close{color:#fff}
   .modal.jam .modal-close:hover{background:rgba(255,255,255,.16)}
   .modal.jam .modal-body{padding:24px}
@@ -3177,9 +3177,9 @@
     </div>
   </div>
 
-  <button class="rail-badge" aria-label="Cosmix workspace">
-    <span class="ini"><img src="assets/brand-mark.jpg" alt="" width="36" height="36"></span>
-    <span class="rail-label">Cosmix</span>
+  <button class="rail-badge" aria-label="HolyDrip workspace">
+    <span class="ini"><img src="assets/hd-mark.jpg" alt="" width="36" height="36"></span>
+    <span class="rail-label">HolyDrip</span>
   </button>
 </aside>
 
@@ -3301,7 +3301,7 @@
     </button>
     <button class="story" data-story="ads" style="--i:3">
       <span class="story-ring"><span class="story-cover"><img src="assets/story-4.svg" alt=""></span></span>
-      <span class="story-label">Popular ads</span>
+      <span class="story-label">Top reels</span>
     </button>
 </div>
 
@@ -3504,7 +3504,7 @@
 <div class="scrim" id="pro-scrim" role="dialog" aria-modal="true" aria-labelledby="pro-title">
   <div class="modal">
     <div class="modal-hero">
-      <img src="assets/cx-credits-hero.jpg" alt="">
+      <img src="assets/hd-credits-hero.jpg" alt="">
       <button class="modal-close" data-close aria-label="Close">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
           <path d="M18 6 6 18M6 6l12 12"/>
@@ -3527,7 +3527,7 @@
 <div class="scrim" id="jam-scrim" role="dialog" aria-modal="true" aria-labelledby="jam-title">
   <div class="modal jam">
     <div class="modal-hero">
-      <img src="assets/cx-jam-hero.jpg" alt="">
+      <img src="assets/hd-jam-hero.jpg" alt="">
       <button class="modal-close" data-close aria-label="Close">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
           <path d="M18 6 6 18M6 6l12 12"/>
@@ -3559,7 +3559,7 @@
 <div class="scrim" id="credits-scrim" role="dialog" aria-modal="true" aria-labelledby="credits-title">
   <div class="modal">
     <div class="modal-hero">
-      <img src="assets/cx-credits-hero.jpg" alt="">
+      <img src="assets/hd-credits-hero.jpg" alt="">
       <button class="modal-close" data-close aria-label="Close">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
           <path d="M18 6 6 18M6 6l12 12"/>
@@ -3645,7 +3645,7 @@
         <stop offset=".69" stop-color="#F2A4F2"/><stop offset="1" stop-color="#F9C391"/>
       </linearGradient></defs>
     </svg>
-    <h2>Cosmix, welcome to your feed</h2>
+    <h2>HolyDrip, welcome to your feed</h2>
     <button class="lm" id="su-open" aria-label="Get started">
       <span class="lm-rim"><span class="lm-in">Get started
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -3708,103 +3708,132 @@
   };
 
   const POSTS = [
-    { agent:'creative', time:'12 min', ratio:'4:5', campaign:'Ingredient Story',
-      images:['assets/cx-creative-2.jpg'],
-      title:'Lead with the ingredients, not the label claims',
-      sub:'The flat-lay puts every hero ingredient in plain sight beside the pack, making transparency the visual argument — no asterisks, no fine print, nothing to explain away.',
-      cta:{ label:'Publish Campaign', logo:'meta', brandColor:'#0866FF' } },
+    { agent:'creative', time:'12 min', ratio:'square', campaign:'Poster Format',
+      images:['assets/hd-ultimate-tee.jpg','assets/hd-heavy-not-hot.jpg','assets/hd-eight-colours.jpg'],
+      title:'The poster format is a catalog format waiting to be used',
+      sub:'The big-caps look that built the following is already on the drop page. It works as a PDP hero and a category banner without a new shoot. Same treatment, three placements, one asset run.',
+      cta:{ label:'Generate placements' } },
 
-    { agent:'performance', time:'28 min', ratio:'wide', fit:'contain',
-      images:['assets/cx-pancake-pack.jpg'],
-      title:'A proof-led campaign for No-Nonsense Plant Protein',
-      sub:'27g of plant protein and a clean label, called out on the pack itself rather than buried in copy underneath it.',
-      cta:{ label:'Approve concept' } },
-
-    { agent:'visibility', time:'45 min',
-      rings:{ score:41, rings:[
-        { label:'Coverage',   value:47, color:'#ff375f' },
-        { label:'Citations',  value:3,  color:'#a8ff2e' },
-        { label:'SEO health', value:68, color:'#22d3ee' }
-      ]},
-      title:'Cosmix is visible to buyers who know the brand, and close to absent for everyone else',
-      sub:'A GEO score of 41 lands in the Poor band: only 7 of 15 prompts surface Cosmix on any engine, and competitor pages take 313 citations to its 11. Strong content and trust signals sitting on a weak structural base.',
-      cta:{ label:'Open report' } },
-
-    { agent:'creative', time:'1 hr', ratio:'square', campaign:'Morning Ritual',
-      images:['assets/cx-creative-3.jpg'],
-      title:'Show the supplement in a real morning, not a gym-filtered one',
-      sub:'A woman mid-stir in her own kitchen — not a studio, not a workout — positions Cosmix as a habit that belongs in ordinary mornings, not just aspirational ones.',
-      cta:{ label:'Start creating' } },
-
-    { agent:'storefront', time:'3 hr', ratio:'square',
-      images:['assets/cx-carousel-1.jpg','assets/cx-carousel-2.jpg','assets/cx-carousel-3.jpg','assets/cx-carousel-4.jpg','assets/cx-carousel-5.jpg'],
-      title:'The My Happy Gut description reads like an ingredient list',
-      sub:'Rewritten around how it makes you feel rather than what is in it. Fourteen listings are in the same state.',
-      cta:{ label:'Apply Update' } },
-
-    { agent:'visibility', time:'1 hr',
+    { agent:'performance', time:'28 min',
       chart:{
-        title:'Clean plant protein recommendation',
-        max:50,
-        note:'Underrepresented in gut-health and plant-protein prompts',
+        title:'Seller-funded share by placement',
+        max:110,
+        note:'Drop features are the easiest slot to sell first',
         rows:[
-          { label:'The Whole Truth',   value:45 },
-          { label:'OZiva',             value:38 },
-          { label:'Kapiva',            value:27 },
-          { label:'Cosmix',            value:15, brand:true }
+          { label:'Homepage takeover',  value:90 },
+          { label:'Category top slot',  value:85 },
+          { label:'In-feed placement',  value:70 },
+          { label:'Drop feature',       value:96, brand:true }
         ]
       },
-      title:'Improve visibility for clean plant protein searches',
-      sub:'Recommendations to help Cosmix surface when shoppers ask AI for clean, plant-based protein and gut health.',
-      cta:{ label:'Open report' } },
-
-    { agent:'creative', time:'2 hr', ratio:'4:5', campaign:'Editorial Pour',
-      images:['assets/cx-creative-4.jpg'],
-      title:'Shoot it like fashion, not like health food',
-      sub:'An aubergine editorial grade and chocolate mid-pour reframe the pouch as an object of desire — trading the category’s clinical baggage for something the audience actually wants on their feed.',
-      cta:{ label:'Generate versions' } },
-
-    { agent:'creative', time:'4 hr', ratio:'wide', campaign:'The Transformation',
-      images:['assets/cx-creative-5.jpg'],
-      title:'Let the transformation make the argument, not the copy',
-      sub:'A hard split between the clean pack and the full-glory pancake stack makes the functional-to-delicious case in a single glance — no headline required.',
-      cta:{ label:'Explore trend' } },
-
-    { agent:'creative', time:'6 hr', ratio:'wide', campaign:'Launch Reveal', images:['assets/cx-creative-1.jpg'],
-      title:'Position the launch as an occasion, not a product drop',
-      sub:'The cloche lift and single amber spotlight do what a banner headline can’t — they make the product feel like an event, not an announcement.',
-      cta:{ label:'Publish Campaign', logo:'meta', brandColor:'#0866FF' } },
+      title:'Your sellers will pay for the ads you have not launched',
+      sub:'Marketplace media is a revenue line, not a cost line. Premium brands onboarding onto a curated platform expect placement and fund it themselves. Four slots are ready to price.',
+      cta:{ label:'Price the slots' } },
 
     { agent:'visibility', time:'35 min',
-      images:['assets/cx-prompts-1.jpg','assets/cx-prompts-2.jpg'],
-      chart:{
-        title:'Citations on the 8 discovery prompts',
-        max:50,
-        note:'Cited on none of the eight',
-        rows:[
-          { label:'healthkart.com', value:38 },
-          { label:'nutrabay.com',   value:25 },
-          { label:'reviehub.in',    value:25 },
-          { label:'Cosmix',         value:0, brand:true }
-        ]
-      },
-      title:'Eight discovery moments, owned by someone else',
-      sub:'These are the prompts where a buyer with no brand in mind builds a shortlist. 5 of 8 use multivitamin queries, and Cosmix sells a multivitamin.',
+      rings:{ score:12, rings:[
+        { label:'Coverage',  value:14, color:'#ff375f' },
+        { label:'Citations', value:2,  color:'#a8ff2e' },
+        { label:'Structure', value:21, color:'#22d3ee' }
+      ]},
+      title:'Nobody has claimed premium Indian menswear on the engines yet',
+      sub:'Ask an assistant where to buy a heavyweight Indian tee and it names generalists. A GEO score of 12 means the answer is unclaimed, and claiming it before launch is cheaper than taking it after.',
       cta:{ label:'Open report' } },
+
+    { agent:'storefront', time:'14 min', ratio:'square',
+      images:['assets/hd-model-front.jpg','assets/hd-ghost.jpg','assets/hd-colour-01-frost.jpg'],
+      title:'One tee, three shot styles, and this is a single brand',
+      sub:'On-model, ghost mannequin and flat cutout all sit on the same listing. Multiply that by every brand you onboard and the grid reads like nine stores. One shot standard at intake fixes it before it reaches a page.',
+      cta:{ label:'Set the shot standard' } },
+
+    { agent:'creative', time:'45 min', ratio:'square', campaign:'Made in Tiruppur',
+      images:['assets/hd-craftsman.jpg'],
+      title:'The mill is the story nobody else can tell',
+      sub:'Made-in reels outperform product reels on this account. Every brand you onboard has a mill, a karigar or a town behind it, and none of it reaches the listing. This is the frame to build from.',
+      cta:{ label:'Start creating' } },
+
+    { agent:'storefront', time:'1 hr', ratio:'square', fit:'contain', fitBg:'#f3f1ec',
+      images:['assets/hd-size-chart.jpg'],
+      title:'The size guide is a picture, so nothing can read it',
+      sub:'Chest, length, sleeve and waist for six sizes are baked into one image. A buyer cannot filter on it, a fit finder cannot use it, and an answer engine cannot quote it. Move it into the product record.',
+      cta:{ label:'Convert to attributes' } },
 
     { agent:'visibility', time:'1 hr',
       chart:{
-        title:'Visibility share, two ways of counting',
-        max:30,
-        note:'Nine brands tracked. That is the whole leaderboard.',
+        title:'Where HolyDrip can be found',
+        max:100,
+        note:'Findable from a feed, not from a question',
         rows:[
-          { label:'Own leaderboard', value:24 },
-          { label:'All sources',     value:3, brand:true }
+          { label:'Instagram reach',             value:88 },
+          { label:'Google, category terms',      value:9 },
+          { label:'AI answers, category prompts', value:3, brand:true }
         ]
       },
-      title:'The score that puts you first is only measuring nine brands',
-      sub:'Cosmix leads its own leaderboard at 24%. Against every source the engines actually cite, the real share is closer to 3%.',
-      cta:{ label:'Open report' } }
+      title:'You are discoverable on social and invisible in search',
+      sub:'Four hundred thousand people can find you on a feed. Almost nobody can find you from a question, because the reels rank and the product pages do not exist yet.',
+      cta:{ label:'Open report' } },
+
+    { agent:'storefront', time:'2 hr',
+      chart:{
+        title:'Attributes filled per category',
+        max:100,
+        note:'Occasion, fabric and sleeve blank on most of the ethnic range',
+        rows:[
+          { label:'Tees',        value:92 },
+          { label:'Sweatshirts', value:71 },
+          { label:'Bottoms',     value:64 },
+          { label:'Eyewear',     value:45 },
+          { label:'Kurtas',      value:38, brand:true }
+        ]
+      },
+      title:'Kurtas are missing the three attributes buyers filter on',
+      sub:'Occasion, fabric and sleeve are blank across most of the ethnic catalog, so the filters return thin results and the category looks emptier than it is.',
+      cta:{ label:'Fill the gaps' } },
+
+    { agent:'creative', time:'2 hr', ratio:'wide', campaign:'This With That',
+      images:['assets/hd-styled-trio.jpg'],
+      title:'Only a marketplace can style across brands',
+      sub:'Pairing one seller\'s tee with another seller\'s trousers is a shot a single-brand store cannot take. It gives every product a second reason to be bought and sells two sellers at once.',
+      cta:{ label:'Generate versions' } },
+
+    { agent:'storefront', time:'3 hr', ratio:'square',
+      images:['assets/hd-collar-navy.jpg','assets/hd-texture.jpg'],
+      title:'Subtle shoots the macro. Make every brand shoot it.',
+      sub:'Premium is argued at 2mm of flute and a bio-washed hand feel, and this listing shows both. Most sellers send the full garment and nothing closer. Add the macro pair to the intake spec.',
+      cta:{ label:'Add to intake spec' } },
+
+    { agent:'performance', time:'5 hr',
+      chart:{
+        title:'Reel formats by hold rate',
+        max:100,
+        note:'Three formats worth money on launch day',
+        rows:[
+          { label:'Drip Tips',         value:74, brand:true },
+          { label:'Made in Tiruppur',  value:68 },
+          { label:'This With That',    value:61 },
+          { label:'Trend explainers',  value:39 }
+        ]
+      },
+      title:'The reels already ran your creative test',
+      sub:'Three formats consistently outperform on organic, at zero media cost. Those are the ones worth budget on launch day. The rest stay free.',
+      cta:{ label:'Build the launch sets' } },
+
+    { agent:'storefront', time:'3 hr',
+      chart:{
+        title:'The comparison table, as buyers see it',
+        max:105,
+        note:'Exists on one listing. Should be a block every brand fills at onboarding',
+        rows:[
+          { label:'Subtle Cloud Tee', value:91, brand:true },
+          { label:'Uniqlo',           value:86 },
+          { label:'Zara',             value:82 },
+          { label:'M&S',              value:81 },
+          { label:'H&M',              value:72 }
+        ]
+      },
+      title:'The comparison table is doing more work than the product page',
+      sub:'Ranking the tee against Uniqlo, Zara, M&S and H&M gives a buyer a reason in four seconds. It lives on one listing. Make it a block every brand fills in when they onboard.',
+      cta:{ label:'Make it a module' } }
   ];
 
 
@@ -3842,6 +3871,7 @@
     flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',
     x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    plug:'<path d="M12 22v-5"/><path d="M9 7V2"/><path d="M15 7V2"/><path d="M6 13V8h12v5a5 5 0 0 1-10 0"/>',
     shopify:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
     meta:'<path d="M7.5 7c-2.4 0-3.5 2.4-3.5 5s1.1 5 3.5 5c2.8 0 4-4 4.5-5 .5 1 1.7 5 4.5 5 2.4 0 3.5-2.4 3.5-5s-1.1-5-3.5-5c-2.8 0-4 4-4.5 5-.5-1-1.7-5-4.5-5Z"/>',
     edit:'<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/>'
@@ -4105,75 +4135,32 @@
 
   /* ---------------- deck: one column per agent ---------------- */
   // extra cards so the columns read at the volume the deck is built for
-  const DECK_ONLY = [
-    { agent:'performance', time:'40 min', ratio:'square', images:['assets/cx-pack-vanilla.jpg'],
-      title:'No-Nonsense Plant Protein is carrying the account this week',
-      sub:'It is taking 38% of spend and returning 51% of revenue. Worth widening the budget before the New Year reset.',
-      cta:{ label:'Shift budget', logo:'meta', brandColor:'#0866FF' } },
-    { agent:'performance', time:'5 hr', ratio:'wide', images:['assets/cx-pancake-lifestyle.jpg'],
-      title:'Three Made to Absorb creatives are past frequency 4',
-      sub:'Same audience seeing the same casting too often. Rotating in the newer castings should pull CPA back.',
-      cta:{ label:'Rotate creative' } },
-    { agent:'storefront', time:'1 hr', ratio:'square', images:['assets/cx-fyp-annotated.jpg'],
-      title:'Show why Fermented Yeast Protein beats standard whey',
-      sub:'The FERMAGUT fermentation and clean label, marked on the pack where shoppers already look first.',
-      cta:{ label:'Apply Update' } },
-    { agent:'storefront', time:'6 hr', ratio:'4:5', fit:'contain', fitBg:'#dbc2b2', images:['assets/cx-nutrition-panel.jpg'],
-      title:'Six protein listings are missing their nutrition panel',
-      sub:'Every one of them is a Made to Absorb or No-Nonsense listing in the top twenty by traffic. The panel exists, it is just not attached.',
-      cta:{ label:'Attach panels' } }
-  ];
+  const DECK_ONLY = [];
 
   // short, data-led posts: a badge, a small table, then the decision
   const TEXT_POSTS = [
-    { agent:'performance', time:'6 min', badge:['Catalog health','warn'],
-      rows:[['Disapproved on Meta','5 of 40'],['Cause','missing GTIN'],['Fix','one Shopify field']],
-      title:'Five products are disapproved on Meta',
-      sub:'All five share one cause. Fix the field once in Shopify and the next sync clears every one of them.',
-      cta:{ label:'Open catalog health' } },
+    { agent:'performance', time:'6 min', badge:['Watching','info'],
+      rows:[['Instagram followers','409k'],['Reachable off-platform','0'],
+            ['Retargetable after a visit','0'],['App install campaigns','none']],
+      title:'Four hundred thousand followers is an audience, not a buyer list',
+      sub:'Organic reach built the brand. It cannot retarget an abandoned bag, reach the followers who never see a post, or drive the app installs the catalog lives in.',
+      cta:{ label:'Draft the launch plan', logo:'meta', brandColor:'#0866FF' } },
 
-    { agent:'creative', time:'9 min', badge:['Shipped','ok'],
-      rows:[['Concepts drafted','14'],['Kept','2'],['Ready to run','both'],
-            ['Held for the next launch','12']],
-      title:'Fourteen concepts in, two out',
-      sub:'The two that survived are the ones where the label claim is on the pack rather than under it.',
-      cta:{ label:'Review the two' } },
-
-    { agent:'storefront', time:'2 hr', badge:['Needs you','info'],
-      rows:[['Descriptions rewritten','31'],['Still saying "clinically proven"','0'],
-            ['Waiting on approval','31']],
-      title:'Thirty-one descriptions are rewritten and waiting',
-      sub:'They all leaned on the same empty phrase. Rewritten around how it makes you feel. Nothing is live until you approve.',
-      cta:{ label:'Approve all' } },
-
-    { agent:'visibility', time:'5 hr', badge:['Losing','bad'],
-      rows:[['Models asked','4'],['Named a competitor','3'],['Named you','0'],
-            ['Prompt','best clean plant protein in India']],
-      title:'You are absent from the plant-protein answer',
-      sub:'Three of four models name the same competitor. The engines are quoting editorial, not product pages.',
-      cta:{ label:'See what would change it' } },
-
-    { agent:'performance', time:'7 hr', badge:['Watching','info'],
-      rows:[['Frequency above 4','3 ad sets'],['CPA drift','+18%'],['Fresh cuts ready','4']],
-      title:'Three sets are burning the same frame',
-      sub:'Same audience, same cut, too many times. Rotating the newer frames in should pull CPA back inside the week.',
-      cta:{ label:'Rotate creative', logo:'meta', brandColor:'#0866FF' } },
-
-    { agent:'visibility', time:'50 min', badge:['Losing','bad'],
-      rows:[['Branded prompts','3 of 3 cited'],['Discovery prompts','7 of 15 cited']],
-      title:'You win the answer only when the buyer types your name',
-      sub:'Hand the engines the brand name and all three answer correctly and cite cosmix.in. Ask them to describe a need instead, and the shortlist they build does not contain Cosmix.',
-      cta:{ label:'See what would change it' } },
+    { agent:'storefront', time:'40 min', badge:['Needs you','info'],
+      rows:[['Stack','Custom, not Shopify'],['Connector','Headless CMS over API'],
+            ['Theme edits needed','0'],['Ready to publish','8 colourways']],
+      title:'No Shopify, no problem',
+      sub:'The same listing controls run over a headless CMS on your own stack. Content model, attribute rules and publishing arrive through the API instead of a theme. Nothing goes live until you approve.',
+      cta:{ label:'Connect the CMS' } },
 
     { agent:'visibility', time:'20 min', badge:['Sitting idle','warn'],
-      rows:[['NABL-tested manufacturing','on product pages only'],
-            ['FERMAGUT','no page explains it'],
-            ['1,579 reviews, sentiment 77','not marked up'],
-            ['Marico acquisition, ₹375 cr','no entity record'],
-            ['Named creator advocates','never asked']],
-      title:'Five things you already own that the engines cannot see',
-      sub:'None of this needs to be created. Each one needs to be moved, marked up, or declared. That is work you can approve this week, not sign off as a new claim.',
-      cta:{ label:'Start with the reviews' } }
+      rows:[['260 GSM, 2mm ottoman knit','on one page, not marked up'],
+            ['Lasts 50+ washes, lab tested','image only'],
+            ['Made in Tiruppur, 60+ craftsmen','no entity record'],
+            ['Ranked against Uniqlo, Zara, H&M','no page explains it']],
+      title:'The catalog work is also the visibility work',
+      sub:'GSM, knit, wash count and origin are exactly the facts an answer engine lifts and quotes. None of this needs to be created. It needs to be moved into the record and marked up.',
+      cta:{ label:'Start with the spec block' } }
   ];
 
   const ALL_POSTS = [...POSTS, ...TEXT_POSTS, ...DECK_ONLY];
@@ -4232,8 +4219,9 @@
   };
   // catalog is its own segment: the product feed itself, mostly the creative director
   const CATALOG = new Set([
-    'Five products are disapproved on Meta',
-    'Show why Fermented Yeast Protein beats standard whey'
+    'One tee, three shot styles, and this is a single brand',
+    'Kurtas are missing the three attributes buyers filter on',
+    'Subtle shoots the macro. Make every brand shoot it.'
   ]);
   const sectorOf = (p) => CATALOG.has(p.title) ? 'catalog' : SECTOR_BY_AGENT[p.agent];
   const byAgent = (k) => ALL_POSTS.filter(p => sectorOf(p) === k);
@@ -4248,11 +4236,11 @@
       logo:'meta', color:'#0866FF'
     },
     shopify: {
-      agent:'storefront', name:'Shopify',
-      title:'Connect Shopify to publish the changes, not only draft them',
-      sub:'Descriptions, prices and pages are drafted already. Pushing them live needs store access.',
-      items:['Publish rewritten descriptions','Update a product page','Read live stock and orders'],
-      logo:'shopify', color:'#95BF47'
+      agent:'storefront', name:'HolyDrip CMS',
+      title:'Connect the CMS to publish the changes, not only draft them',
+      sub:'Attributes, size data and the spec block are drafted already. Pushing them live needs write access to your stack.',
+      items:['Publish attribute and spec updates','Update a product page','Read live stock and members'],
+      logo:'plug', color:'currentColor'
     }
   };
 
@@ -4290,9 +4278,9 @@
 
   const SECTOR_STATE = {
     signals:    { on:false, note:'Waiting on your customer data' },
-    catalog:    { on:true,  every:5200, shimmer:'3.1s', stream:['Re-syncing 80 products','Checking Meta feed rejections','Matching GTINs against Shopify','Re-reading stock on the live feed','Scoring the top 20 by rating'] },
+    catalog:    { on:true,  every:5200, shimmer:'3.1s', stream:['Re-reading eight colourways','Checking attribute coverage by category','Matching seller assets to the shot standard','Reading the size guide','Scoring listings by completeness'] },
     creatives:  { on:true,  every:4300, shimmer:'2.7s', stream:['Finding new trends','Cutting three hero frames','Reading what landed last week','Matching the launch to placements','Drafting the next brief'] },
-    ads:        { on:true,  every:5900, shimmer:'3.4s', stream:['Reading yesterday spend','Checking frequency on four sets','Pulling a CPA delta','Watching the No-Nonsense Plant Protein set','Scoring creative by hold rate'] },
+    ads:        { on:true,  every:5900, shimmer:'3.4s', stream:['Reading reel hold rates','Pricing four placement slots','Sizing the follower audience','Checking app install options','Scoring creative by hold rate'] },
     storefront: { on:false, note:'Idle, last run 40 min ago' },
     visibility: { on:false, note:'Queued, next run in 12 min', soon:true }
   };
@@ -4308,7 +4296,7 @@
   };
 
   // whatever the brand turned out to be during setup
-  let BRAND_NAME = 'Cosmix';
+  let BRAND_NAME = 'HolyDrip';
   window.__setBrand = (name) => { BRAND_NAME = name || BRAND_NAME; };
 
   const saved = new Set();
@@ -4450,7 +4438,7 @@
 
   const sideHTML = () => `
     <div class="side-brand">
-      <i class="bmark"><img src="assets/brand-mark.jpg" alt=""></i>
+      <i class="bmark"><img src="assets/hd-mark.jpg" alt=""></i>
       <span><b>${BRAND_NAME}</b></span>
     </div>
 
@@ -4912,8 +4900,8 @@
   // removed, commented out) independently of this file, and an index here
   // would silently point at the wrong card the next time it does
   const FEED_CONNECT_AFTER = {
-    meta: POSTS.find(p => p.title === 'A proof-led campaign for No-Nonsense Plant Protein'),
-    shopify: POSTS.find(p => p.title === 'The My Happy Gut description reads like an ingredient list')
+    meta: POSTS.find(p => p.title === 'Your sellers will pay for the ads you have not launched'),
+    shopify: TEXT_POSTS.find(p => p.title === 'No Shopify, no problem')
   };
   document.getElementById('feed').insertAdjacentHTML('beforeend',
     FEED_ORDER.map(c => card(c) +
@@ -5589,16 +5577,16 @@
 
   // ---------- sessions: one list behind both history and search ----------
   const SESSIONS = [
-    ['Today',       'Remix the Made to Absorb carousel',           '12 min ago'],
-    ['Today',       'Three directions for No-Nonsense Protein',     '1 hr ago'],
-    ['Today',       'Why is visibility flat on gut-health terms',   '3 hr ago'],
-    ['Yesterday',   'Fermented Yeast Protein proof copy',           'Yesterday, 6:40 pm'],
-    ['Yesterday',   'Recut the hero frame for pre-roll',            'Yesterday, 2:15 pm'],
-    ['Yesterday',   'Jam with the team on the Fermented hero',      'Yesterday, 11:02 am'],
-    ['Last 7 days', 'Meta Ads budget split for the launch',         'Tuesday'],
-    ['Last 7 days', 'Rewrite the My Happy Gut description',         'Tuesday'],
-    ['Last 7 days', 'Who owns clean plant protein in AI answers',   'Monday'],
-    ['Last 7 days', 'Brand health dip after the feed change',      'Sunday']
+    ['Today',       'Remix the Drip Tips cover for the PDP',          '12 min ago'],
+    ['Today',       'Three directions for the Tiruppur film',         '1 hr ago'],
+    ['Today',       'Why is visibility flat on heavyweight tee terms', '3 hr ago'],
+    ['Yesterday',   'Spec block copy for The Cloud Tee',              'Yesterday, 6:40 pm'],
+    ['Yesterday',   'Recut the Ultimate Tee hero for pre-roll',       'Yesterday, 2:15 pm'],
+    ['Yesterday',   'Jam with the team on the drop banner',           'Yesterday, 11:02 am'],
+    ['Last 7 days', 'Placement pricing for seller brands',            'Tuesday'],
+    ['Last 7 days', 'Convert the size guide to attributes',           'Tuesday'],
+    ['Last 7 days', 'Who owns premium Indian menswear in AI answers', 'Monday'],
+    ['Last 7 days', 'Brand health dip after the feed change',         'Sunday']
   ];
 
   // ---------- history panel ----------
@@ -5738,36 +5726,36 @@
     // one brand colour per slide, in the same order as that story's ring blobs
     // (story-1/2/3.svg), so the circle and the story it opens read as one thing
     trends: { title:'Trends', avatar:'assets/agent-performance.svg', slides:[
-      { c:'#234118', h:'Gut-first is winning',
-        p:'Searches for gut health and clean protein are up 34% this month, and the language has moved from quick fixes to daily habits.' },
-      { c:'#a75c51', h:'Fermented is breaking out',
-        p:'Fermented formats are outselling standard protein two to one in metro cities. Fermented Yeast Protein is sitting in the right place for it.' },
-      { c:'#f7eedb', h:'Proof beats promise',
-        p:'Ads that show the label claim on the pack hold attention roughly twice as long as ads that write it underneath.' }
+      { c:'#0b0b0b', h:'Heavyweight is the category',
+        p:'Searches for 240 GSM and up are climbing every month, and the language has moved from soft to structured.' },
+      { c:'#5c1421', h:'Made-in is the hook',
+        p:'Reels that open inside a mill or a workshop hold attention longer than reels that open on a product.' },
+      { c:'#7f98a8', h:'No logo is a position',
+        p:'Plain, logo-free essentials are outperforming branded basics with the audience that follows you.' }
     ]},
     new: { title:'What is new', avatar:'assets/agent-creative.svg', slides:[
-      { c:'#a75c51', h:'Every ratio, one feed',
+      { c:'#5c1421', h:'Every ratio, one feed',
         p:'Cards now post at 4:5, 1:1 and 16:9, matched to wherever the work is actually going to run.' },
-      { c:'#f7eedb', h:'Remix with Agent',
+      { c:'#7f98a8', h:'Remix with Agent',
         p:'Take any post into chat, tell the agent what to change, and get three directions back.' },
-      { c:'#234118', h:'Jam with the team',
+      { c:'#0b0b0b', h:'Jam with the team',
         p:'Pull a ShopOS specialist onto any post. They pick it up on WhatsApp and stay on it with you.' }
     ]},
     howto: { title:'How to', avatar:'assets/agent-visibility.svg', slides:[
-      { c:'#f7eedb', h:'Tune the feed by liking',
+      { c:'#7f98a8', h:'Tune the feed by liking',
         p:'Every like teaches the agents what to post more of. The feed narrows to your brand within a week.' },
-      { c:'#234118', h:'Start from a post, not a prompt',
+      { c:'#0b0b0b', h:'Start from a post, not a prompt',
         p:'A blank box asks you to know the answer. A post gives you something to push against.' },
-      { c:'#a75c51', h:'Jam when it needs a person',
+      { c:'#5c1421', h:'Jam when it needs a person',
         p:'Pull the team into any card. The thread keeps the brief, so nobody starts from scratch.' }
     ]},
-    ads: { title:'Popular ads', avatar:'assets/agent-storefront.svg', slides:[
-      { img:'assets/cx-story-holding.jpg', h:'Made to Absorb',
-        p:'Your strongest cut this week. The lifestyle frame is holding attention twice as long as flat product.' },
-      { img:'assets/cx-story-mocha-wide.jpg', h:'No-Nonsense Plant Protein',
-        p:'Putting the label claims on the pack lifted add to cart by 18% against the plain hero.' },
-      { img:'assets/cx-story-mocha.jpg', h:'Fermented Yeast Protein',
-        p:'The product proof format is your most saved post. Worth running it across the rest of the line.' }
+    ads: { title:'Top reels', avatar:'assets/agent-storefront.svg', slides:[
+      { img:'assets/hd-reel-ultimate-indian-tee.jpg', h:'Ultimate Indian Tee',
+        p:'Your most saved reel this month. The stacked colourways do the selling before the copy starts.' },
+      { img:'assets/hd-reel-drip-tips.jpg', h:'Drip Tips',
+        p:'The numbered tee check is your strongest format for holds. Worth running it on every category.' },
+      { img:'assets/hd-reel-tiruppur-mill.jpg', h:'Inside a Tiruppur mill',
+        p:'Made-in footage is out-holding product reels two to one. Every seller has a version of this.' }
     ]}
   };
 
@@ -5956,24 +5944,24 @@
 
   /* ================= Signals: sources, cards and the drawer ================= */
   const SOURCES = [
-    { id:'shopify',  name:'Shopify',           kind:'Orders, customers, products, returns', required:true,
-      unlocks:'Purchase history and lifecycle. Every signal needs this one.',
-      records:'2,400 customer records · 4,118 orders · 80 products',
-      steps:['Importing purchase history','Matching customer records','Preparing signals'],
-      icon:'<img src="assets/logo-shopify.png" alt="">' },
+    { id:'shopify',  name:'HolyDrip store',    kind:'Orders, members, products, returns', required:true,
+      unlocks:'Purchase history and member status. Every signal needs this one.',
+      records:'12,400 member records · 1,860 orders · 8 live variants',
+      steps:['Importing purchase history','Matching member records','Preparing signals'],
+      icon:'<img src="assets/hd-mark.jpg" alt="">' },
     { id:'klaviyo',  name:'Klaviyo',           kind:'Email reachability, consent, journeys',
       unlocks:'Email as a channel, contact-frequency rules and journey conflict checks.',
-      records:'2,057 subscribed profiles · 38 segments',
+      records:'9,150 subscribed profiles · 12 segments',
       steps:['Importing subscriber profiles','Checking channel eligibility','Preparing signals'],
       icon:'<img src="assets/logo-klaviyo.png" class="wide" alt="">' },
     { id:'whatsapp', name:'WhatsApp Business', kind:'Opt-in, reachability, replies',
       unlocks:'WhatsApp as an alternative channel, with its own consent.',
-      records:'1,229 opted-in numbers',
+      records:'4,320 opted-in numbers',
       steps:['Importing the opt-in list','Checking channel eligibility','Preparing signals'],
       icon:'<img src="assets/logo-whatsapp.png" alt="">' },
     { id:'support',  name:'Customer support',  kind:'Open issues, returns, service context', optional:true,
       unlocks:'Support exclusions, so nobody with an open complaint gets a marketing message.',
-      records:'318 tickets · 41 open',
+      records:'212 tickets · 19 open',
       steps:['Importing tickets','Matching customer records','Preparing signals'],
       icon:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>' }
   ];
@@ -5984,112 +5972,109 @@
 
   const SIGNALS = [
     { id:'second', life:'new', lifeLabel:'New', when:'12 min',
-      headline:'Your first-time buyers are ready for a second purchase.',
-      why:'274 customers bought once between 14 and 60 days ago and have not come back. That window is where a second order still reads as a follow-up rather than a cold start.',
-      objective:'Turn a first order into a second one, with a product that goes with what they already bought.',
-      channel:'Email',
-      counts:{ eligible:274, unreachable:31, noConsent:12, recent:18, support:5, inJourney:10 },
-      rules:[
-        'Exactly one completed purchase',
-        'That purchase placed 14 to 60 days ago',
-        'No second order on file',
-        'A complementary product is in stock',
-        'Reachable on the selected channel, with consent',
-        'Not contacted in the last 7 days, no open support issue, not already in a journey'
-      ],
-      msg:{
-        subject:'{{first_name}}, the My Happy Gut that goes with your {{category}}',
-        body:'Hi {{first_name}},\n\nYou picked up a {{category}} from us on {{purchase_date}}. My Happy Gut is the one most people reach for next: same clean formula, made for daily gut support, and it works with what you already take.\n\nWe have your flavour back in stock.',
-        cta:'See the pairing'
-      },
-      journey:[
-        ['Entry', 'Customers who pass the rules. Eligibility is rechecked before each send.'],
-        ['Send', 'One email, personalised with the product that pairs with their first order.'],
-        ['Wait 3 days', 'No purchase, still eligible, still reachable.'],
-        ['Follow up', 'One reminder on the same channel. Nobody gets a third message.'],
-        ['Exit', 'On purchase, on unsubscribe, or when the window closes at 60 days.']
-      ],
-      decision:[
-        ['Why these people', 'One order, 14 to 60 days ago, no second order.'],
-        ['Why now', 'The pairing product is back in stock in the flavours they buy.'],
-        ['Why this channel', 'Email consent covers 231 of them. WhatsApp covers 84.'],
-        ['What would stop it', 'Stock falling below 20 units, or the support queue flagging a return.']
-      ],
-      asset:'Pairing frame, No-Nonsense Protein shown with My Happy Gut. The Creative director has it drafted.'
-    },
-    { id:'loyal', life:'loyal', lifeLabel:'Loyal', when:'40 min',
-      headline:'Give your repeat customers first access to the launch.',
-      why:'The new Fermented Yeast Protein flavour and the Made to Absorb bundle go live on 22 September. 311 customers have three or more orders and have already bought protein or superfoods, so the launch category is one they have paid for before.',
-      objective:'Let the people who already buy most see the launch before anyone else. No discount.',
-      channel:'Email',
-      counts:{ eligible:311, unreachable:22, noConsent:9, recent:26, support:3, inJourney:14 },
-      rules:[
-        'Three or more completed purchases',
-        'Last order within the past 120 days',
-        'A protein or superfood purchase already on file',
-        'Launch products available on 22 September',
-        'Reachable on the selected channel, with consent',
-        'Not contacted in the last 7 days, no open support issue, not already in a journey'
-      ],
-      msg:{
-        subject:'{{first_name}}, you see this first',
-        body:'Hi {{first_name}},\n\nThe new Fermented Yeast Protein flavour and the Made to Absorb bundle go live on Monday. You are on the early list, so the link below works from Friday evening.\n\nNo code, no discount. Just first pick of the flavours.',
-        cta:'Open early access'
-      },
-      journey:[
-        ['Entry', 'Repeat customers who pass the rules, checked the evening before.'],
-        ['Send Friday', 'One email with the early link.'],
-        ['Wait 2 days', 'No purchase by Sunday evening.'],
-        ['Follow up', 'A single reminder on Monday morning, as the launch goes public.'],
-        ['Exit', 'On purchase, on unsubscribe, or when the launch goes public.']
-      ],
-      decision:[
-        ['Why these people', 'Three or more orders and a purchase in the launch category.'],
-        ['Why now', 'Early access only means something before the public launch.'],
-        ['Why no discount', 'These customers buy at full price. A code trains them not to.'],
-        ['What would stop it', 'The launch slipping, or fewer than 200 units across flavours.']
-      ],
-      asset:null
-    },
-    { id:'lapsed', life:'lapsed', lifeLabel:'Lapsed', when:'2 hr',
-      headline:'186 customers went quiet after one good year.',
-      why:'They bought two or more times, then stopped between 180 and 365 days ago. Long enough to have drifted, recent enough that they still remember the brand.',
-      objective:'Ask what changed before offering anything. The reply is worth more than the order.',
+      headline:'1,140 people unlocked the member price and never bought.',
+      why:'They handed over a number or an email to see ₹2,000 instead of ₹2,500, then left. Unlocking is the strongest intent signal on the site, and today nothing goes back to them until the next drop.',
+      objective:'Turn an unlocked price into a first order before the unlock stops meaning anything.',
       channel:'WhatsApp',
-      counts:{ eligible:186, unreachable:44, noConsent:19, recent:6, support:8, inJourney:0 },
+      counts:{ eligible:1140, unreachable:96, noConsent:71, recent:40, support:4, inJourney:0 },
       rules:[
-        'Two or more completed purchases',
-        'Last order 180 to 365 days ago',
-        'No order since',
+        'Unlocked the member price in the last 14 days',
+        'No order on file',
         'Reachable on the selected channel, with consent',
         'Not contacted in the last 7 days, no open support issue, not already in a journey'
       ],
       msg:{
         subject:'',
-        body:'Hi {{first_name}}, it has been a while. You bought the {{last_product}} back in {{last_month}} and we have not heard from you since.\n\nQuick one: did it work for you?\n\nIf something went wrong we would rather fix it than sell you anything.',
+        body:'Hi {{first_name}}, your member price on The Cloud Tee is still open. ₹2,000, eight colours, free delivery.\n\nIt stays unlocked for you until Sunday.',
+        cta:'Pick a colour'
+      },
+      journey:[
+        ['Entry', 'Everyone who unlocked and did not buy, checked daily.'],
+        ['Send', 'One WhatsApp message, with the colour they looked at last.'],
+        ['Wait 3 days', 'No order, still eligible.'],
+        ['Follow up', 'One reminder the day before the unlock lapses. Nobody gets a third.'],
+        ['Exit', 'On order, on opt-out, or when the unlock lapses.']
+      ],
+      decision:[
+        ['Why these people', 'They asked for the price. That is the closest thing to a cart on this site.'],
+        ['Why now', 'An unlock older than two weeks reads as a cold message.'],
+        ['Why WhatsApp', 'Returns already run on it, so the thread and the number are verified.'],
+        ['What would stop it', 'Their colour going out of stock, or an open return.']
+      ],
+      asset:'Colourway frame, the eight tees on the rail. The Creative director has it drafted.'
+    },
+    { id:'loyal', life:'loyal', lifeLabel:'Loyal', when:'40 min',
+      headline:'Give the first buyers the next drop before anyone else.',
+      why:'The second seller brand goes live on 3 October. 2,300 members bought The Cloud Tee at full member price and have not been contacted since delivery. A launch category they have paid for once already.',
+      objective:'Let the people who bought the first drop see the second one first. No discount.',
+      channel:'Email',
+      counts:{ eligible:2300, unreachable:120, noConsent:64, recent:210, support:11, inJourney:0 },
+      rules:[
+        'Bought from the first drop',
+        'Delivered, no return',
+        'Next drop available on 3 October',
+        'Reachable on the selected channel, with consent',
+        'Not contacted in the last 7 days, no open support issue, not already in a journey'
+      ],
+      msg:{
+        subject:'{{first_name}}, you see this first',
+        body:'Hi {{first_name}},\n\nThe next drop goes live on Friday. You bought the first one, so the link below works from Thursday evening.\n\nNo code, no discount. Just first pick of the sizes.',
+        cta:'Open early access'
+      },
+      journey:[
+        ['Entry', 'First-drop buyers who pass the rules, checked the evening before.'],
+        ['Send Thursday', 'One email with the early link.'],
+        ['Wait 1 day', 'No order by Thursday night.'],
+        ['Follow up', 'A single reminder on Friday morning, as the drop goes public.'],
+        ['Exit', 'On order, on unsubscribe, or when the drop goes public.']
+      ],
+      decision:[
+        ['Why these people', 'They bought at member price with no code and kept it.'],
+        ['Why now', 'Early access only means something before the public drop.'],
+        ['Why no discount', 'These members already pay full member price. A code trains them not to.'],
+        ['What would stop it', 'The drop slipping, or fewer than 300 units across sizes.']
+      ],
+      asset:null
+    },
+    { id:'lapsed', life:'lapsed', lifeLabel:'Lapsed', when:'2 hr',
+      headline:'640 members unlocked a price, bought nothing, and went quiet.',
+      why:'They unlocked more than 60 days ago, never ordered, and have not opened the site since. Long enough to have drifted, recent enough that they still remember the reel that sent them.',
+      objective:'Ask what stopped them before offering anything. The reply is worth more than the order.',
+      channel:'WhatsApp',
+      counts:{ eligible:640, unreachable:88, noConsent:52, recent:0, support:2, inJourney:0 },
+      rules:[
+        'Unlocked a price 60 to 180 days ago',
+        'No order since',
+        'No site visit in 60 days',
+        'Reachable on the selected channel, with consent',
+        'Not contacted in the last 7 days, no open support issue, not already in a journey'
+      ],
+      msg:{
+        subject:'',
+        body:'Hi {{first_name}}, you unlocked the member price on The Cloud Tee back in {{unlock_month}} and did not pick one up.\n\nQuick one: what stopped you? Size, colour, price?\n\nIf something put you off we would rather fix it than sell you anything.',
         cta:'Reply to this message'
       },
       journey:[
-        ['Entry', 'Lapsed customers with WhatsApp opt-in.'],
+        ['Entry', 'Lapsed unlocks with WhatsApp opt-in.'],
         ['Send', 'One message. A question, not an offer.'],
         ['Wait 5 days', 'Replies go to the support queue, not to an agent.'],
-        ['Branch', 'A reply ends the journey. Silence gets one product note, then nothing.'],
-        ['Exit', 'On reply, on purchase, on opt-out, or after the second message.']
+        ['Branch', 'A reply ends the journey. Silence gets one colourway note, then nothing.'],
+        ['Exit', 'On reply, on order, on opt-out, or after the second message.']
       ],
       decision:[
-        ['Why these people', 'They bought more than once, so it is not a one-off.'],
-        ['Why a question', 'A discount to a lapsed buyer teaches them to wait for discounts.'],
+        ['Why these people', 'They wanted the price badly enough to hand over a number.'],
+        ['Why a question', 'A discount to someone who never bought teaches them to wait for discounts.'],
         ['Why WhatsApp', 'Email open rates for this group sit under 9 percent.'],
-        ['What would stop it', 'Any of them having an open return. Eight already do, and are excluded.']
+        ['What would stop it', 'Any of them having an open ticket. Two already do, and are excluded.']
       ],
       asset:null
     }
   ];
   const DONE_SIGNAL = {
     life:'done', lifeLabel:'Finished', when:'last week',
-    headline:'The winback journey finished on Thursday.',
-    why:'96 messages went out over nine days. 11 people ordered, 4 replied to say they had moved cities, and nobody unsubscribed.',
-    nums:[['96','sent'],['11','orders'],['0','unsubscribes']]
+    headline:'The first drop reminder finished on Thursday.',
+    why:'420 messages went out over six days. 61 people ordered, 9 replied to ask about sizing, and nobody opted out.',
+    nums:[['420','sent'],['61','orders'],['0','opt-outs']]
   };
 
   const num = (n) => n.toLocaleString();
@@ -6356,7 +6341,7 @@
 
     const seedOf = (t) => [...t].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     const rand = (sd) => () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
-    const WORDS = ['cosmix','urban','performance','north','grade','shop','studio','supply','goods',
+    const WORDS = ['holy','drip','urban','performance','north','grade','shop','studio','supply','goods',
                    'labs','co','works','wear','active','field','house','made','one','the'];
     const nameFromHost = (host) => {
       const stem = host.split('.')[0];
@@ -6369,8 +6354,8 @@
     };
 
     // stores this prototype has read for real: name and live product count off the site
-    const KNOWN_STORES = { 'cosmix.in': { name:'Cosmix', products:80 } };
-    let BRAND = { host:'cosmix.in', name:'Cosmix', products:80, fresh:false };
+    const KNOWN_STORES = { 'holydrip.club': { name:'HolyDrip', products:8 } };
+    let BRAND = { host:'holydrip.club', name:'HolyDrip', products:8, fresh:false };
 
     const AG_ORDER = ['creative', 'performance', 'storefront', 'visibility'];
 
@@ -6452,7 +6437,7 @@
       tick();
     };
 
-    // brand-understanding cards: what ShopOS read off cosmix.in, one fact per card.
+    // brand-understanding cards: what ShopOS read off holydrip.club, one fact per card.
     // Same post shape as everything else in ALL_POSTS (agent + title + sub), so card()
     // renders the identical header, menu, and like/remix/jam row as any other post —
     // "about" just tells card() to skip the media/data-table slot, since there is none.
@@ -6461,40 +6446,40 @@
     // never a one-off headline like "The Flex henley is leading the brand". That's
     // what lets a card be editable: the label stays put while the finding under it
     // (the part ShopOS actually read off this store) is what the user can correct.
-const CX_ABOUT = [
+const HD_ABOUT = [
       { agent:'orchestrator', about:true, editable:true,
         title:'About the brand',
-        sub:'Cosmix makes root-cause nutrition for people who are done with quick fixes: clean, plant-based protein, superfoods and multivitamins built around gut health, meant to be a daily habit rather than a gym ritual.',
-        tags:['Root-cause', 'Gut-first', 'No-Nonsense'] },
+        sub:'HolyDrip is a premium menswear marketplace built on a 409k-follower Instagram audience: reels first, drops second. It onboards premium Indian brands only, sells at a gated member price, and its first drop is Subtle\'s 260 GSM Cloud Tee, made in Tiruppur.',
+        tags:['Marketplace', 'Premium menswear', 'Drops', 'Member price'] },
       { agent:'orchestrator', about:true,
         title:'Brand guidelines',
-        brandkit:{ logo:'assets/cx-logo.jpg',
-                   colors:['#234118', '#a75c51', '#f7eedb'],
-                   type:{ sample:'Recoleta', face:"'Recoleta', Georgia, 'Times New Roman', serif", name:'Recoleta headings, Manrope body' } } },
+        brandkit:{ logo:'assets/hd-logo.jpg',
+                   colors:['#0b0b0b', '#5c1421', '#7f98a8'],
+                   type:{ sample:'Bodoni Moda', face:"'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif", name:'Bodoni Moda headings, Geist body' } } },
       { agent:'orchestrator', about:true, editable:true,
         title:'Voice and tone',
-        sub:'Writes warm and plain, ingredient first: what is in it, what it solves, and why. The proof sits on the pack, never in fine print or an asterisk.',
-        tags:['Warm', 'Ingredient-first', 'Plain'] },
+        sub:'Short, dry, and sure of itself. A serif headline that states a fact, a small line of proof under it, and no exclamation marks. Heavy, not hot. Lasts 4 years. Good luck choosing one.',
+        tags:['Dry', 'Proof-led', 'No logo'] },
       { agent:'orchestrator', about:true,
         connect:'shopify' },
       { agent:'orchestrator', about:true, editable:true,
         title:'Company',
-        sub:'Founded in 2019 by Vibha Harish and Soorya Jagdish, run out of Bengaluru with its own manufacturing near Ramanagara, selling direct online and through quick commerce. Marico took a 60% stake in 2026 at a ₹375 cr valuation, in a clean-nutrition market crowded with brands leading on the same protein claims.',
-        tags:['Founded 2019', 'Bengaluru', 'In-house manufacturing', 'Marico-backed', { t:'Add team size', gap:true }] },
+        sub:'A curated marketplace for premium Indian menswear across tees, sweatshirts, kurtas, bottoms, perfume, eyewear, caps and innerwear. Pre-launch on the full catalog, with one live drop on a custom stack and no Shopify. Positioned above Myntra on price and below the luxury houses on scale.',
+        tags:['Marketplace', 'Pre-launch', 'Custom stack', 'Instagram-first', { t:'Add team size', gap:true }] },
       { agent:'orchestrator', about:true, editable:true,
         title:'Product catalog',
-        sub:'80 products being pulled into one catalog across six families, sold as pouches, sachets and bundles, with seasonal flavours rotating in rather than replacing the range.',
-        tags:['Plant Protein', 'Fermented Yeast Protein', 'Superfoods', 'Multivitamins', 'Pancakes', 'Protein Bars'] },
+        sub:'One live listing today, The Cloud Tee, in eight colourways at ₹2,500 with a ₹2,000 member price. The wider catalog is being read from seller submissions across nine categories and is not on the site yet.',
+        tags:['The Cloud Tee', '8 colourways', 'Tees', 'Sweatshirts', 'Kurtas', 'Bottoms', 'Perfume', 'Eyewear'] },
       { agent:'orchestrator', about:true, editable:true,
         title:'Product information',
-        sub:'No-Nonsense Plant Protein is the most-reviewed product on the storefront, Indonesian Cacao alone past 1,600 reviews: a clean label and a digestive herb blend, in single-origin flavours like Kerala Vanilla Bean and Ratnagiri Mango. Fermented Yeast Protein, built on the FERMAGUT process, and My Happy Gut cover most of what a customer would build a daily routine from.' },
+        sub:'The Cloud Tee is 260 GSM pure cotton in a 2mm ottoman knit, bio-washed, structured fit with a straight fall, lab tested to 50+ washes and made by 60+ craftsmen in Tiruppur. Fourteen-day returns over WhatsApp, delivery always free. The listing ranks itself 9.1 against Uniqlo, Zara, M&S and H&M.' },
       { agent:'orchestrator', about:true, editable:true,
         title:'Audience',
-        sub:'Buyers skew 22 to 35, metro India, more women than men, training a few times a week and reading the label before the price. Found the brand on Instagram and through creators rather than at a gym counter.' },
+        sub:'Indian men 20 to 35, metro, who found the brand through styling reels rather than search. They read fit and fabric before price, buy in drops, and expect a member price in return for handing over a number.' },
       { agent:'orchestrator', about:true, editable:true,
         title:'Industry leaders',
-        tags:[{ t:'thewholetruthfoods.com', dot:'#111111' }, { t:'oziva.in', dot:'#2f7d4e' },
-              { t:'kapiva.in', dot:'#e07a2b' }, { t:'wellbeingnutrition.com', dot:'#3b6ea5' }] }
+        tags:[{ t:'myntra.com', dot:'#ff3f6c' }, { t:'ajio.com', dot:'#2c4152' },
+              { t:'tatacliq.com', dot:'#8a2432' }, { t:'thecollective.in', dot:'#111111' }] }
     ];
     // placeholder copy for any brand without a bespoke set above: same categories, generic content
     const genericAbout = (B) => [
@@ -6516,7 +6501,7 @@ const CX_ABOUT = [
       { agent:'orchestrator', about:true, editable:true, title:'Industry leaders',
         tags:[{ t:'Add a competitor', gap:true }, { t:'Add a competitor', gap:true }] }
     ];
-    const ABOUT_CONTENT = (B) => B.host === 'cosmix.in' ? CX_ABOUT : genericAbout(B);
+    const ABOUT_CONTENT = (B) => B.host === 'holydrip.club' ? HD_ABOUT : genericAbout(B);
 
     // these cards are never posts, so they get their own shape: a mark on the
     // title line, the copy under it, and nothing else. Editable because this is
@@ -6554,8 +6539,8 @@ const aboutCard = (p) => `
     // Signals connector row (icon, name, one line, a white Connect button),
     // just with copy written for this moment rather than the generic Signals one
     const CONNECT_ROWS = {
-      shopify: { icon:'<img src="assets/logo-shopify.png" alt="">', name:'Shopify',
-                 desc:'Connect Shopify for detailed product analytics.' }
+      shopify: { icon:'<img src="assets/hd-mark.jpg" alt="">', name:'HolyDrip CMS',
+                 desc:'Connect the CMS for live listings, members and orders.' }
     };
     const aboutConnectRow = (id) => {
       const c = CONNECT_ROWS[id];
@@ -6777,7 +6762,7 @@ const aboutCard = (p) => `
     ] : [
       'Opening your store.',
       'Reading the theme and collections.',
-      `Reading the catalog. ${B.products} products.`,
+      `Reading the catalog. ${B.products} live variants.`,
       'Checking prices and stock.',
       'Learning how the brand writes.',
       'Pulling your product photography.',
@@ -6859,7 +6844,7 @@ const aboutCard = (p) => `
     };
 
     const begin = (host, fresh) => {
-      const clean = (host || '').replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0] || 'cosmix.in';
+      const clean = (host || '').replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0] || 'holydrip.club';
       const r = rand(seedOf(clean));
       // a store we have actually read gets its real numbers; any other host gets a plausible guess
       const known = KNOWN_STORES[clean];
@@ -6930,7 +6915,7 @@ const aboutCard = (p) => `
       // an empty field still runs the demo brand: that shortcut stays
       if (v && !looksLikeUrl(v)) { showErr('Enter a valid URL', true); return; }
       clearErr();
-      begin(v || 'cosmix.in', false);
+      begin(v || 'holydrip.club', false);
     };
 
     // leaving a field with something unusable in it is the other honest moment to say so
