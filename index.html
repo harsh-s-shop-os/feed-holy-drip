@@ -11,7 +11,7 @@
   [hidden]{display:none!important}
 </style>
 </head>
-<body>
+<body class="tab-feed">
 <style>
   :root{
     --bg:#0a0a0a;
@@ -37,6 +37,17 @@
     min-height:100vh;
     padding-bottom:120px;
     padding-left:60px;
+    transition:padding-left .34s cubic-bezier(.32,.72,0,1);
+  }
+  /* The open rail is part of the layout, so the page moves over instead of
+     being covered or dimmed. Phones keep padding-left:0 - there the rail is a
+     drawer - which is why this is desktop-only. The three fixed panels that
+     were measured off the 60px strip move with it. */
+  @media (min-width:701px){
+    body.rail-wide{padding-left:236px}
+    body.rail-wide .hist{left:248px}
+    body.rail-wide .view.is-out{left:236px}
+    body.rail-wide .composer-dock{left:calc(50% + 118px)}
   }
 
   /* ---------- left rail ---------- */
@@ -47,10 +58,13 @@
     background:var(--bg);border-right:1px solid var(--line-soft);
     transition:width .34s cubic-bezier(.32,.72,0,1), background .2s;
   }
+  /* Two states, not a sheet. Open, the rail is simply wider and the page
+     makes room for it (body.rail-wide, below). The drop shadow belongs to the
+     phone drawer, which really does sit over the page; on desktop there is
+     nothing for it to cast onto. */
   .rail.open{
     width:236px;
     background:#0f0f0f;
-    box-shadow:26px 0 60px rgba(0,0,0,.55);
   }
 
   .rail-logo{
@@ -160,8 +174,14 @@
     background:#f5f5f5;color:#0a0a0a;
     font-size:12.5px;font-weight:500;line-height:28px;white-space:nowrap;
   }
-  .rail-item:hover .rail-tip,
-  .rail-item:focus-within .rail-tip{opacity:1;visibility:visible;transform:none}
+  /* Collapsed, the visible icons name themselves on hover. Agents is the
+     exception: it answers with the fly-out of the four agents instead, the
+     same one it shows when the rail is open. Open, every label is already on
+     screen, so the tips stay out of the way. */
+  .rail:not(.open) .rail-item:hover > .rail-tip,
+  .rail:not(.open) .rail-item:focus-within > .rail-tip{
+    opacity:1;visibility:visible;transform:none;
+  }
   .rail.open .rail-tip{display:none}
   body.hist-open .rail-item[data-item="history"] .rail-tip{display:none}
 
@@ -185,6 +205,14 @@
     font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);
   }
   .fly-head:first-child{margin-top:2px}
+  /* The fly-out names itself only while the rail is collapsed: there the icon
+     has no label beside it, so the menu has to say what it belongs to. Open,
+     the word "Agents" is already sitting right next to it. */
+  .fly-title{
+    margin:6px 0 7px;padding:0 12px;
+    font-size:12px;font-weight:500;line-height:1;color:var(--fg-3);
+  }
+  .rail.open .fly-title{display:none}
   .fly-row{
     display:flex;align-items:center;gap:13px;width:100%;
     height:46px;padding:0 12px;border:0;border-radius:14px;
@@ -324,6 +352,30 @@
     .hist,.spot,.spot-scrim{transition:none}
   }
 
+  /* Collapsed, the strip carries three destinations: Home, Search, Agents.
+     Everything else (Library, Skills, Memory, History, the foot, the workspace
+     badge) folds to zero height and comes back as the rail widens, so the
+     three icons do not jump when the rest arrives. On a phone the rail is a
+     drawer that is only ever seen open, so none of this applies there. */
+  .rail-item,.rail-foot,.rail-badge{
+    transition:max-height .34s cubic-bezier(.32,.72,0,1),opacity .2s ease,
+               margin .34s cubic-bezier(.32,.72,0,1),padding .34s cubic-bezier(.32,.72,0,1),
+               width .34s cubic-bezier(.32,.72,0,1),background .15s;
+  }
+  .rail-item{max-height:36px}
+  .rail-foot{max-height:260px}
+  .rail-badge{max-height:36px}
+  @media (min-width:701px){
+    .rail:not(.open) .rail-nav .rail-item:not([data-item="home"]):not([data-item="search"]):not([data-item="agents"]),
+    .rail:not(.open) .rail-foot,
+    .rail:not(.open) .rail-badge{
+      max-height:0;opacity:0;overflow:hidden;pointer-events:none;
+      margin-top:-4px;   /* swallow the nav's 4px gap so the three icons stay adjacent */
+    }
+    .rail:not(.open) .rail-foot{padding-top:0;margin-top:0;border-top-color:transparent}
+    .rail:not(.open) .rail-badge{margin-top:0}
+  }
+
   .rail-scrim{
     position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.45);
     opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
@@ -359,8 +411,11 @@
   .menu-btn:hover svg{transform:scale(1.2)}
   .wordmark{font-size:18px;font-weight:600;letter-spacing:-.01em}
 
+  /* top:auto on an abspos flex item resolves to a static position that isn't
+     reliably the container's vertical centre, so it sat ~18px lower than the
+     logo and the right-side button — pin both axes off the pill's own centre */
   .seg{
-    position:absolute;left:50%;transform:translateX(-50%);
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
     display:flex;align-items:center;
     background:#171717;border-radius:999px;
   }
@@ -373,7 +428,7 @@
   }
   .tab{
     display:flex;align-items:center;gap:8px;
-    height:36px;padding:8px 12px;border-radius:999px;
+    height:36px;padding:8px 26px;border-radius:999px;
     font:inherit;font-size:12px;font-weight:500;line-height:20px;
     color:var(--fg-3);background:transparent;border:0;cursor:pointer;
     transition:background .15s,color .15s;white-space:nowrap;
@@ -396,10 +451,35 @@
   .credits:hover{background:#232323}
   .credits:hover svg{transform:rotate(90deg) scale(1.1)}
 
+  /* The top right carries exactly one control, chosen by the centre tab: the deck
+     toggle while Feed is on, credits while Chat is on. Whichever one is not up here
+     sits in the rail foot instead, so nothing is lost, only relocated. */
+  .tb-ls{display:flex;flex:0 0 auto}
+  .tb-btn{
+    display:flex;align-items:center;gap:8px;
+    height:36px;padding:8px 14px;border-radius:var(--r-ctl);
+    background:#171717;border:0;
+    color:var(--fg);font:inherit;font-size:12px;font-weight:500;cursor:pointer;
+    white-space:nowrap;transition:background .15s;
+  }
+  /* icon and label share one colour in every state */
+  .tb-btn svg{flex:0 0 auto;color:currentColor;transition:transform .2s cubic-bezier(.34,1.4,.64,1)}
+  .tb-btn:hover{background:#232323}
+  .tb-btn:hover svg{transform:scale(1.08)}
+  /* the upgrade invitation is the long one, so it sheds its label first */
+  @media (max-width:1180px){ .tb-btn.cta .tb-label{display:none} .tb-btn.cta{padding:0 11px} }
+
+  body.tab-feed .topbar-right .credits{display:none}
+  body.tab-chat #layout-switch-top{display:none}
+  body.tab-feed .rail-item[data-item="layout"]{display:none}
+  body.tab-chat .rail-item[data-item="credits"]{display:none}
+
   /* ---------- stories ---------- */
+  /* only 4 stories today, never enough to need the scroll room this row was
+     built for, so they sit centred instead of pinned to the left edge */
   .stories{
     width:var(--feed-w);margin:0 auto;
-    display:flex;gap:18px;padding:24px 2px 24px;
+    display:flex;justify-content:center;gap:18px;padding:34px 2px 34px;
     overflow-x:auto;scrollbar-width:none;
   }
   .stories::-webkit-scrollbar{display:none}
@@ -831,9 +911,13 @@
   }
   /* one meta line: what the sector is, or what its agent is doing right now */
   .col-meta{
-    display:flex;align-items:center;gap:8px;margin:7px 0 0;min-height:21px;
+    display:none;align-items:center;gap:8px;margin:7px 0 0;min-height:21px;
     font-size:14px;line-height:21px;color:var(--fg-2);
   }
+  /* the intro title moves up here, shimmering, once the first real card has
+     landed anywhere; until then the column's intro card carries it */
+  body.setup-run.cards-live .col-meta{display:flex;animation:metaIn .42s ease both}
+  @keyframes metaIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   .col-off{display:inline-flex;align-items:center;gap:9px;color:var(--fg-3)}
   .col-meta .desc{color:var(--fg-2)}
   .col-head .col-live{min-width:0;flex:1;font-size:14px;line-height:21px}
@@ -924,7 +1008,7 @@
   .feed{
     width:var(--feed-w);margin:0 auto;
     padding-top:0;
-    display:flex;flex-direction:column;gap:24px;
+    display:flex;flex-direction:column;gap:32px;
   }
 
   /* ---------- card ---------- */
@@ -1829,16 +1913,20 @@
   }
 
   /* ---------- entrance ---------- */
-  /* in normal scrolling: just enough to register, not enough to notice */
+  /* in normal scrolling: just enough to register, not enough to notice.
+     The resting state is 20%, not invisible, so the next card peeking at the
+     bottom of the viewport reads as "there is more below" on a fresh load. */
   .card,.feed-end{
-    opacity:0;transform:translateY(5px);
+    opacity:.2;transform:translateY(5px);
     transition:opacity .4s ease,transform .4s ease;
   }
   .card.in,.feed-end.in{opacity:1;transform:none}
 
-  /* first reveal after onboarding: everything rises in from below */
+  /* first reveal after onboarding: everything rises in from below, and that one
+     starts from nothing — the peek cue is for ordinary scrolling, not for this */
   body.revealing .card,
   body.revealing .feed-end{
+    opacity:0;
     transform:translateY(46px);
     transition:opacity .85s cubic-bezier(.19,.86,.28,1),transform .85s cubic-bezier(.19,.86,.28,1);
   }
@@ -2176,23 +2264,32 @@
     /* top bar: menu, tabs, layout switch, credits — theme and bell move off the bar */
     .topbar{height:60px;padding:10px 12px;gap:8px}
     .topbar-right{gap:6px}
-    .credits{height:32px;padding:0 10px;gap:6px}
+    /* a phone gets the icon alone: no label, no button background */
+    .credits{height:36px;padding:0;gap:6px;background:transparent}
+    .credits:hover{background:transparent}
+    .tb-btn,.tb-btn.cta{height:36px;width:36px;padding:0;gap:0;justify-content:center;background:transparent}
+    .tb-btn:hover{background:transparent}
+    .tb-label{display:none}
     /* the row is menu | tabs | credits sharing the full width, not the desktop's
        absolute-centred tabs floating over whatever the side groups happen to be.
        position:relative (not static) is what .seg-pill needs to anchor to .seg
        itself, rather than handing that off to the next positioned ancestor up
        the tree and detaching the pill from its tab. */
     .topbar-left{flex:0 0 auto}
-    .seg{position:relative;left:auto;transform:none;flex:1;min-width:0;
-         display:flex;justify-content:center;margin:0}
+    /* the pill is painted on .seg itself, so on the desktop's flex:1 the dark
+       capsule stretched across the whole middle of the bar even though the
+       tabs sat centred inside it. On a phone .seg instead sizes to its tabs
+       and a wrapper does the centring, so the capsule hugs Feed/Chat only. */
+    .topbar-mid{flex:1;min-width:0;display:flex;justify-content:center}
+    .seg{position:relative;left:auto;transform:none;flex:0 0 auto;min-width:0;margin:0}
     .topbar-right{flex:0 0 auto;margin-left:0}
-    .tab{padding:0 12px}
+    .tab{padding:0 20px}
     .view.is-out{left:0}
     .composer-dock{left:50%;width:calc(100% - 24px);bottom:12px}
 
     /* stories and feed run edge to edge with a phone gutter */
-    .stories{padding:16px 16px 20px;gap:14px}
-    .feed{padding-left:12px;padding-right:12px;gap:16px}
+    .stories{padding:24px 16px 28px;gap:14px}
+    .feed{padding-left:12px;padding-right:12px;gap:22px}
     .card{border-radius:16px}
     .feed-end{padding:40px 20px}
 
@@ -2247,6 +2344,8 @@
        would double it up with a gap in between, so col-head goes flush and quiet */
     .col-head{padding:0}
     .col-head hr{display:none}
+    .col-meta{margin:0;padding:12px 12px 0}
+    .col-status.gone{margin-bottom:-16px}
 
     /* overlays: sheets and full-width panels */
     .scrim{padding:0;align-items:end}
@@ -2736,6 +2835,88 @@
   .card.is-connect .cn-list svg{flex:0 0 auto;color:var(--fg-3)}
   .card.is-connect .btn-bar{border-radius:0 0 var(--r-card) var(--r-card)}
 
+  /* a text-only card: the copy is the whole card, so the actions sit tight
+     under the header and the CTA closes the card off at the bottom */
+  .card.is-text .card-actions{padding:14px 16px 10px}
+  .card.is-text .card-body{padding:0 16px 16px}
+  .card.is-text .btn-bar{border-radius:0 0 var(--r-card) var(--r-card)}
+
+  /* ---------- intro card: the one card that explains the feed ----------
+     Shown once, the first time the feed opens (localStorage flag; ?intro on
+     the URL brings it back). Three square slides, each a single brand colour
+     washed and drifting the way the story slides do, with one headline that
+     reveals word by word every time the slide comes into view. */
+  /* the slide dots ride in the empty top-right of the image, not in an actions
+     row of their own; the copy follows the image directly */
+  .card.is-intro .card-head .dots{position:static;transform:none;margin-left:auto;pointer-events:auto}
+  .card.is-intro .card-body{padding-top:16px}
+  .intro-slide{
+    position:relative;isolation:isolate;overflow:hidden;
+    --ink:#fff;
+    display:flex;flex-direction:column;justify-content:flex-end;
+  }
+  .intro-art{
+    position:absolute;inset:-25%;z-index:0;
+    background:
+      radial-gradient(closest-side at var(--ax,26%) var(--ay,20%), var(--c2) 0%, transparent 76%),
+      radial-gradient(closest-side at var(--bx,78%) var(--by,76%), color-mix(in srgb, var(--c) 55%, #000) 0%, transparent 74%),
+      var(--c);
+    filter:blur(46px) saturate(1.5);
+    transform-origin:50% 50%;
+    will-change:transform;
+  }
+  /* three slides, three drifts: a slow sway, a slow breath, a slow slide */
+  .intro-slide[data-i="0"] .intro-art{--ax:24%;--ay:18%;--bx:80%;--by:78%;animation:introSway 38s ease-in-out infinite alternate}
+  .intro-slide[data-i="1"] .intro-art{--ax:76%;--ay:24%;--bx:20%;--by:80%;animation:introBreathe 44s ease-in-out infinite alternate}
+  .intro-slide[data-i="2"] .intro-art{--ax:58%;--ay:30%;--bx:16%;--by:86%;animation:introGlide 40s ease-in-out infinite alternate}
+  @keyframes introSway{
+    0%{transform:translate(0,0) rotate(0deg) scale(1)}
+    50%{transform:translate(-3%,3%) rotate(5deg) scale(1.08)}
+    100%{transform:translate(3%,-2%) rotate(-4deg) scale(1.02)}
+  }
+  @keyframes introBreathe{
+    0%{transform:scale(1) rotate(0deg)}
+    50%{transform:scale(1.14) rotate(-3deg) translate(2%,-2%)}
+    100%{transform:scale(1.04) rotate(3deg) translate(-2%,2%)}
+  }
+  @keyframes introGlide{
+    0%{transform:translate(-4%,2%) scale(1.06)}
+    50%{transform:translate(2%,-3%) scale(1)}
+    100%{transform:translate(4%,3%) scale(1.1)}
+  }
+  /* every slide is dark, so the headline is always white; the scrim under it
+     is deeper than the story one because the type is larger and sits lower */
+  .intro-slide::after{
+    content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(rgba(0,0,0,0) 40%,rgba(0,0,0,.34) 100%);
+  }
+  .intro-copy{
+    position:relative;z-index:2;margin:0;padding:30px 28px 40px;
+    font-size:41px;line-height:46px;font-weight:500;letter-spacing:-.028em;
+    color:var(--ink);text-wrap:balance;
+  }
+  /* a finished image fills the slide and dissolves toward the bottom, so the
+     headline sits over the lower part of the graphic rather than under it */
+  .intro-bg{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+    -webkit-mask-image:linear-gradient(to bottom,#000 42%,rgba(0,0,0,.55) 68%,rgba(0,0,0,.12) 88%,transparent 100%);
+            mask-image:linear-gradient(to bottom,#000 42%,rgba(0,0,0,.55) 68%,rgba(0,0,0,.12) 88%,transparent 100%);
+  }
+  /* the slide's own colour shows through where the image has faded */
+  .intro-slide:has(.intro-bg){background:var(--c)}
+  .intro-word{display:inline-block;opacity:0;white-space:pre}
+  .card.in .intro-slide.on .intro-word{
+    animation:introWord .72s cubic-bezier(.32,.72,0,1) both;
+    animation-delay:calc(var(--i) * 95ms + 180ms);
+  }
+  @keyframes introWord{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+  @media (prefers-reduced-motion:reduce){
+    .intro-art{animation:none!important}
+    .intro-word{opacity:1}
+    .card.in .intro-slide.on .intro-word{animation:none}
+  }
+  @media (max-width:520px){ .intro-copy{font-size:33px;line-height:38px;padding:24px 22px 26px} }
+
   .col.waiting{opacity:.34}
   /* the status card is the one thing a column shows before its own work starts */
   .col.waiting .col-body > *:not(.col-status){opacity:0}
@@ -2743,8 +2924,7 @@
   /* while the feed is being built a column shows its name and that it is working */
   .col-dp{display:none;align-items:center;flex:0 0 auto;margin-left:auto;order:9}
   body.setup-run .col-dot,
-  body.setup-run .col-menu,
-  body.setup-run .col-meta{display:none}
+  body.setup-run .col-menu{display:none}
 
   /* What a column is doing now rides in its own card at the top of that column,
      not as a byline under the title. The matrix sits where a card's mark would
@@ -2755,8 +2935,14 @@
   .col-status{
     display:none;padding:14px 16px 16px;
     background:var(--card);border-radius:var(--r-card);
+    overflow:hidden;
+    transition:max-height .44s cubic-bezier(.2,.7,.2,1),opacity .26s ease,
+      padding .44s cubic-bezier(.2,.7,.2,1),margin .44s cubic-bezier(.2,.7,.2,1);
   }
   body.setup-run .col-status{display:block}
+  /* folds to nothing, pulling the column's gap closed behind it, then is removed */
+  .col-status.gone{max-height:0 !important;opacity:0;padding-top:0;padding-bottom:0;margin-bottom:-20px}
+  @media (prefers-reduced-motion:reduce){ .col-status{transition:none} body.setup-run.cards-live .col-meta{animation:none} }
   .col-status .cs-head{display:flex;align-items:flex-start;gap:8px}
   /* same matrix size as everywhere else it stands in for a status light
      (the column header's own .col-dp) — this one just carries a title, not text */
@@ -3111,6 +3297,7 @@
       <span class="rail-label">Agents</span>
     </button>
       <div class="rail-fly">
+        <p class="fly-title">Agents</p>
         <button class="fly-row" data-fly="Creative generation"><img src="assets/agent-creative.svg" alt="">Creative generation<svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></button>
         <button class="fly-row" data-fly="AI visibility"><img src="assets/agent-visibility.svg" alt="">AI visibility<svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></button>
         <button class="fly-row" data-fly="Performance marketing"><img src="assets/agent-performance.svg" alt="">Performance marketing<svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></button>
@@ -3174,6 +3361,15 @@
         <span class="rail-label">Light mode</span>
       </button>
       <span class="rail-tip">Light mode</span>
+    </div>
+    <div class="rail-item" data-item="credits">
+      <button class="rail-btn" data-nav="credits" aria-label="Credits">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+        </svg>
+        <span class="rail-label">500 credits</span>
+      </button>
+      <span class="rail-tip">500 credits</span>
     </div>
   </div>
 
@@ -3259,6 +3455,7 @@
     </button>
   </div>
 
+  <div class="topbar-mid">
   <nav class="seg" role="tablist" aria-label="Primary">
     <span class="seg-pill" id="seg-pill" aria-hidden="true"></span>
     <button class="tab" role="tab" aria-selected="true">
@@ -3275,8 +3472,10 @@
       Chat
     </button>
   </nav>
+  </div>
 
   <div class="topbar-right">
+    <div class="tb-ls" id="layout-switch-top"></div>
     <button class="credits">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
         <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
@@ -3707,6 +3906,35 @@
     orchestrator: { name: 'ShopOS',               avatar: 'assets/agent-orchestrator.svg'  }
   };
 
+  // Every number on an AI Visibility card comes from here and nowhere else.
+  // Placeholder GEO object for HolyDrip: no audit exists yet (pre-launch, one live
+  // listing). Numbers are invented to be plausible for a social-first brand with
+  // almost no crawlable product pages. A real report is an edit to this object.
+  const GEO = {
+    score: 12, band: 'Poor',
+    prompts: 15, engines: 3, checks: 45, silent: 41,      // silent = checks with no mention, no citation
+    // seven weighted dimensions, heaviest first; weight is % of the composite
+    dims: [
+      { label:'Citation Performance', short:'Citations',  value:2,   weight:25 },
+      { label:'Page Citability',      short:'Citability', value:9,   weight:19 },
+      { label:'E-E-A-T',              short:'E-E-A-T',    value:11,  weight:15 },
+      { label:'Brand Mentions',       short:'Mentions',   value:14,  weight:15 },
+      { label:'Crawler Access',       short:'Crawlers',   value:60,  weight:11 },
+      { label:'Structured Data',      short:'Markup',     value:21,  weight:8  },
+      { label:'Platform Readiness',   short:'Platforms',  value:18,  weight:7  }
+    ],
+    branded:     { cited:2, of:3 },
+    discovery:   { cited:0, of:8, heavyweight:5 },
+    leaderboard: { share:0, rank:9, of:9 },               // share of voice across the 9 tracked brands
+    ledger:      { holydrip:1, others:286, share:0 },     // citations across every source the engines read
+    sources: [ ['myntra.com',22], ['amazon.in',18], ['ajio.com',11], ['tatacliq.com',9], ['reddit.com',6] ],
+    post: { title:'What GSM Actually Means on a T-Shirt', path:'/journal/fabric',
+            answers:'five heavyweight tee questions', citedToday:'myntra, amazon.in, reddit' }
+  };
+  // the three lowest scores are the three heaviest: their combined weight
+  GEO.lowThree = GEO.dims.slice(0, 3);
+  GEO.lowWeight = GEO.lowThree.reduce((n, d) => n + d.weight, 0);
+
   const POSTS = [
     { agent:'creative', time:'12 min', ratio:'square', campaign:'Poster Format',
       images:['assets/hd-ultimate-tee.jpg','assets/hd-heavy-not-hot.jpg','assets/hd-eight-colours.jpg'],
@@ -3898,7 +4126,7 @@
             <span class="bar-label">${r.label}</span>
             <div class="bar-track">
               <div class="bar-fill" style="width:${(r.value / c.max * 100).toFixed(1)}%"></div>
-              <span class="bar-value" style="left:${(r.value / c.max * 100).toFixed(1)}%">${r.value}%</span>
+              <span class="bar-value" style="left:${(r.value / c.max * 100).toFixed(1)}%">${r.value}${c.unit ?? '%'}</span>
             </div>
             ${r.brand && c.note ? `<span class="bar-note">${c.note}</span>` : ''}
           </div>`).join('')}
@@ -3938,7 +4166,7 @@
         </div>
         <div class="stat-row">
           ${r.rings.map(x => `
-            <div class="stat">
+            <div class="stat"${x.full ? ` title="${x.full}"` : ''}>
               <p class="k">${x.label}</p>
               <p class="v" style="color:${x.color}">${x.value}<span style="color:var(--fg-3);font-weight:400">/100</span></p>
             </div>`).join('')}
@@ -4064,6 +4292,17 @@
       </div>
     </div>`;
 
+  // a card with nothing above the copy: no media, no data table, no brand kit.
+  // its CTA moves under the copy, because there is nothing above it to act on
+  const isText = (p) => !p.about && !p.rows && !(p.images || p.chart || p.rings || p.dial);
+  const ctaBar = (c) => `<button class="btn btn-primary btn-bar">
+        <span class="lead">
+          ${c.logo ? svg(I[c.logo], 18, c.brandColor || 'currentColor') : ''}
+          ${c.label}
+        </span>
+        ${svg(I.chevronRight, 18)}
+      </button>`;
+
   const card = (p) => {
     // take the index BEFORE cloning: the clone is not in ALL_POSTS, so indexOf
     // on it returns -1 and every card ends up claiming post -1
@@ -4071,7 +4310,7 @@
     p = { ...p, badge: null };
     const a = AGENTS[p.agent];
     return `
-    <article class="card${p.rows ? ' is-data' : ''}" data-post="${idx}" data-agent="${p.agent}">
+    <article class="card${p.rows ? ' is-data' : ''}${isText(p) ? ' is-text' : ''}" data-post="${idx}" data-agent="${p.agent}">
       <div class="card-head">
         <img class="avatar" src="${a.avatar}" alt="">
         <span class="identity">
@@ -4089,7 +4328,7 @@
             <button role="menuitem" data-act="fewer">${svg(I.bellOff, 17)} Show fewer from this agent</button>
             <button role="menuitem" data-act="snooze">${svg(I.clock, 17)} Snooze this agent for 7 days</button>
             <hr>
-            ${p.rows || p.about ? '' : `<button role="menuitem" data-act="download">${svg(I.download, 17)} Download assets</button>
+            ${p.rows || p.about || isText(p) ? '' : `<button role="menuitem" data-act="download">${svg(I.download, 17)} Download assets</button>
             <hr>`}
             <button role="menuitem" class="danger" data-act="report">${svg(I.flag, 17)} Report a problem</button>
           </div>
@@ -4099,15 +4338,9 @@
       ${p.about ? (p.brandkit ? kitStrip(p.brandkit) : '')
         : p.rows ? `<div class="panel"><div class="rows">${p.rows.map(([k, v]) =>
           `<div><span class="k">${k}</span><span class="v">${v}</span></div>`).join('')}</div></div>`
-        : media(p)}
+        : isText(p) ? '' : media(p)}
 
-      ${p.cta ? `<button class="btn btn-primary btn-bar">
-        <span class="lead">
-          ${p.cta.logo ? svg(I[p.cta.logo], 18, p.cta.brandColor || 'currentColor') : ''}
-          ${p.cta.label}
-        </span>
-        ${svg(I.chevronRight, 18)}
-      </button>` : ''}
+      ${p.cta && !isText(p) ? ctaBar(p.cta) : ''}
 
       <div class="card-actions">
         <div class="act-group">
@@ -4128,6 +4361,8 @@
         <h2 class="card-title">${p.title}</h2>
         <p class="card-sub">${p.sub}</p>
       </div>` : ''}
+
+      ${p.cta && isText(p) ? ctaBar(p.cta) : ''}
 
     </article>`;
   };
@@ -4271,6 +4506,99 @@
     </article>`;
   };
 
+
+  // the intro card: what the feed is and the three things you do with it.
+  // Not a post (not in ALL_POSTS), so it never enters the deck or the agent chips
+  const INTRO = {
+    title:'This is your feed',
+    sub:'Every day your agents post recommendations to improve your creative, ads, catalog, visibility and CRM. Each card is finished work, ready to go. Approve it to publish or finalise the action, remix it with the agent that made it, or jam with the human team.',
+    slides:[
+      // each slide is a finished illustration; c/c2 stay as the fallback wash while it loads
+      // all three images share one near-black blue, so the colour that shows
+      // through under the headline is the same on every slide
+      { c:'#07090b', c2:'#7f98a8', img:'assets/intro-1.jpg', h:'This is your feed. Updated everyday with new ideas.' },
+      { c:'#07090b', c2:'#7f98a8', img:'assets/intro-3.jpg', h:'Jam with agents or humans to perfect it.' },
+      { c:'#07090b', c2:'#7f98a8', img:'assets/intro-2.jpg', h:'Approve and publish to your platforms.' }
+    ]
+  };
+  const introCard = () => {
+    const a = AGENTS.orchestrator;
+    const words = (h) => h.split(' ').map((w, i) =>
+      `<span class="intro-word" style="--i:${i}">${w}${i < h.split(' ').length - 1 ? ' ' : ''}</span>`).join('');
+    return `
+    <article class="card is-intro" data-intro-card>
+      <div class="card-head">
+        <img class="avatar" src="${a.avatar}" alt="">
+        <span class="identity">
+          <span class="agent-name">${a.name}</span>
+        </span>
+        ${dots(INTRO.slides.length)}
+      </div>
+
+      <div class="media is-carousel" data-r="square">
+        <div class="track">
+          ${INTRO.slides.map((s, i) => `
+          <div class="slide intro-slide" data-i="${i}" style="--c:${s.c};--c2:${s.c2}">
+            ${s.img ? `<img class="intro-bg" src="${s.img}" alt="">` : '<div class="intro-art"></div>'}
+            <p class="intro-copy">${words(s.h)}</p>
+          </div>`).join('')}
+        </div>
+        <button class="nav nav-prev" hidden aria-label="Previous slide">${svg(I.chevronLeft, 18)}</button>
+        <button class="nav nav-next" aria-label="Next slide">${svg(I.chevronRight, 18)}</button>
+      </div>
+
+      <div class="card-body">
+        <p class="card-sub">${INTRO.sub}</p>
+      </div>
+    </article>`;
+  };
+  // the first card on every load, and shown exactly once per load: the moment it
+  // has been seen and then left — scrolled fully past, or the feed hidden behind
+  // Chat, the deck, or any other page — it is removed while out of sight, so it
+  // is simply gone when the user comes back. Nothing is persisted; a reload
+  // starts over, which is what a prototype under review wants.
+  const introWanted = true;
+  const wireIntro = () => {
+    const el = document.querySelector('[data-intro-card]');
+    if (!el) return;
+    // the headline replays each time its slide is the one in view
+    const track = el.querySelector('.track');
+    const slideIO = new IntersectionObserver(es => es.forEach(e =>
+      e.target.classList.toggle('on', e.isIntersecting)), { root: track, threshold: 0.6 });
+    el.querySelectorAll('.intro-slide').forEach(s => slideIO.observe(s));
+
+    // "seen" means at least half of it on screen while the feed itself is showing;
+    // the start screen and the setup run sit over the feed and do not count
+    const feedShowing = () => !document.body.classList.contains('setup') && !document.getElementById('start');
+    let seen = false, spent = false;
+    const retire = () => {
+      if (spent) return;
+      spent = true;
+      const r = el.getBoundingClientRect();
+      const above = r.height > 0 && r.bottom <= 0;
+      // exactly how far the card after it will move up: its top minus ours
+      const next = el.nextElementSibling;
+      const shift = next ? next.getBoundingClientRect().top - r.top : el.offsetHeight;
+      // Chrome and Firefox would hold the page themselves (scroll anchoring);
+      // Safari would not. Turn anchoring off for this one removal and do it by
+      // hand, so every browser ends up in the same place
+      const root = document.documentElement;
+      root.style.overflowAnchor = 'none';
+      el.remove();
+      // if it left through the top, pull the page up by the same amount so the
+      // card the user is looking at stays exactly where it is
+      if (above) window.scrollBy(0, -shift);
+      requestAnimationFrame(() => { root.style.overflowAnchor = ''; });
+      seenIO.disconnect(); slideIO.disconnect();
+    };
+    const seenIO = new IntersectionObserver(es => {
+      const e = es[es.length - 1];
+      if (e.isIntersecting && e.intersectionRatio >= .5 && feedShowing()) seen = true;
+      else if (seen && !e.isIntersecting) retire();
+    }, { threshold: [0, .5] });
+    seenIO.observe(el);
+  };
+
   // two agents are mid-run and say what they are on; two are not running
   // the sector's face is whoever wrote most of its cards, so nothing is hardcoded
   const SECTOR_LEAD = { signals:'crm', catalog:'storefront', creatives:'creative',
@@ -4319,15 +4647,24 @@
   const subbarHTML = () => '';
 
   const switchEl = document.getElementById('layout-switch');
+  const switchTopEl = document.getElementById('layout-switch-top');
   const subbarFeed = document.getElementById('subbar-feed');
   const paintSubbars = () => {
     subbarFeed.innerHTML = subbarHTML();
+    // the label names the view you would land in, not the one you are on
+    const deckOn = layout === 'deck';
+    const deckLabel = deckOn ? 'Standard deck' : 'Pro deck';
+    const want = deckOn ? 'feed' : 'deck';
     // before upgrading there is no second view to switch to, only an invitation
     switchEl.innerHTML = pro ? `
-      <button class="rail-btn${layout === 'deck' ? ' is-on' : ''}" data-layout="${layout === 'deck' ? 'feed' : 'deck'}" aria-label="${layout === 'deck' ? 'Standard deck' : 'Pro deck'}">${I_COLS}<span class="rail-label">${layout === 'deck' ? 'Standard deck' : 'Pro deck'}</span></button>
-      <span class="rail-tip">${layout === 'deck' ? 'Standard deck' : 'Pro deck'}</span>`
-      : `<button class="rail-btn" id="pro-cta" aria-label="Check out Pro mode">${I_COLS}<span class="rail-label">Check out Pro mode</span></button>
+      <button class="rail-btn${deckOn ? ' is-on' : ''}" data-layout="${want}" aria-label="${deckLabel}">${I_COLS}<span class="rail-label">${deckLabel}</span></button>
+      <span class="rail-tip">${deckLabel}</span>`
+      : `<button class="rail-btn" id="pro-cta" data-pro-cta aria-label="Check out Pro mode">${I_COLS}<span class="rail-label">Check out Pro mode</span></button>
       <span class="rail-tip">Check out Pro mode</span>`;
+    // the same control in the top bar, where it lives while the Feed tab is on
+    switchTopEl.innerHTML = pro
+      ? `<button class="tb-btn" data-layout="${want}" aria-label="${deckLabel}">${I_COLS}<span class="tb-label">${deckLabel}</span></button>`
+      : `<button class="tb-btn cta" data-pro-cta aria-label="Check out Pro mode">${I_COLS}<span class="tb-label">Check out Pro mode</span></button>`;
     if (deckBuilt) paintNav();
   };
 
@@ -4388,6 +4725,7 @@
               </div>
             </span>
           </div>
+          <div class="col-meta"></div>
           <hr>
         </div>
         <div class="col-body">
@@ -4709,9 +5047,12 @@
       applyChip();
       return;
     }
-    if (e.target.closest('#pro-cta')) return openModal('pro-scrim');
+    const cta = e.target.closest('[data-pro-cta]');
+    if (cta) { if (cta.closest('.rail')) dismissRail(); return openModal('pro-scrim'); }
     const l = e.target.closest('[data-layout]');
     if (!l) return;
+    // switching from inside the phone drawer closes it behind you
+    if (l.closest('.rail')) dismissRail();
     const want = l.dataset.layout;
     if (want === layout) return;
     if (want === 'deck' && !pro) return openModal('pro-scrim');
@@ -4893,7 +5234,7 @@
     }
     return order;
   };
-  const FEED_ORDER = interleave(POSTS, TEXT_POSTS, DECK_ONLY);
+  const FEED_ORDER = interleave(POSTS, TEXT_POSTS, DECK_ONLY.filter(p => !p.deckOnly));
   // anchored to specific cards rather than fixed indexes, so the two connect
   // prompts land after the same posts no matter how interleave() orders the rest
   // matched by title, not array position -- POSTS gets edited (cards added,
@@ -4904,10 +5245,12 @@
     shopify: TEXT_POSTS.find(p => p.title === 'No Shopify, no problem')
   };
   document.getElementById('feed').insertAdjacentHTML('beforeend',
+    (introWanted ? introCard() : '') +
     FEED_ORDER.map(c => card(c) +
       (c === FEED_CONNECT_AFTER.meta ? connectCard('meta') :
        c === FEED_CONNECT_AFTER.shopify ? connectCard('shopify') : '')).join(''));
   paintSubbars();
+  wireIntro();
 
   /* ---------------- interactions ---------------- */
   const TOASTS = {
@@ -5493,6 +5836,10 @@
     if (!on) return;
     segPill.style.width = on.offsetWidth + 'px';
     segPill.style.transform = `translateX(${on.offsetLeft}px)`;
+    // and the top right follows it: deck toggle on Feed, credits on Chat
+    const chatOn = on.textContent.trim().toLowerCase().startsWith('chat');
+    document.body.classList.toggle('tab-chat', chatOn);
+    document.body.classList.toggle('tab-feed', !chatOn);
   };
 
   document.querySelectorAll('.seg .tab').forEach(b => {
@@ -5519,14 +5866,26 @@
   railScrim.className = 'rail-scrim';
   document.body.appendChild(railScrim);
 
+  // Two states and nothing in between: collapsed (60px, three icons) and open
+  // (236px, full labels). Only the logo toggles it. Hovering the rail never
+  // opens it - that jumped the layout around - the icons answer with a tooltip
+  // instead, or with the agents fly-out.
+  const railDrawer = window.matchMedia('(max-width:700px)');
+  let railOpen = false;
   const setRail = (open) => {
+    railOpen = open;
     rail.classList.toggle('open', open);
-    railScrim.classList.toggle('on', open);
+    // desktop: the page makes room for the open rail, undimmed and still live.
+    // phone: the rail is a drawer over the page, so it keeps the scrim.
+    document.body.classList.toggle('rail-wide', open && !railDrawer.matches);
+    railScrim.classList.toggle('on', open && railDrawer.matches);
     document.getElementById('rail-logo').setAttribute('aria-expanded', String(open));
   };
+  // clicking through the rail dismisses it only where it is a drawer; on
+  // desktop the state is the user's, not the click's
+  const dismissRail = () => { if (railDrawer.matches) setRail(false); };
 
-  document.getElementById('rail-logo').addEventListener('click', () =>
-    setRail(!rail.classList.contains('open')));
+  document.getElementById('rail-logo').addEventListener('click', () => setRail(!railOpen));
   railScrim.addEventListener('click', () => setRail(false));
   // on a phone the rail is a drawer; the menu button in the top bar opens it
   document.getElementById('tb-menu')?.addEventListener('click', () => setRail(true));
@@ -5545,12 +5904,14 @@
 
   document.querySelectorAll('.rail-btn').forEach(b => b.addEventListener('click', () => {
     const key = b.dataset.nav;
-    setRail(false);
+    dismissRail();
 
     // search and history are overlays: they never take the selected state
     if (key === 'search')  return setSpot(true);
     if (key === 'history') return setHistory(!histEl.classList.contains('on'));
     if (key === 'agents')  return;   // the agents page handles its own opening
+    // neither of these is a destination: they must not take the selected state
+    if (key === 'credits' || b.hasAttribute('data-layout') || b.hasAttribute('data-pro-cta')) return;
 
     document.querySelectorAll('.rail-btn').forEach(x => x.classList.toggle('is-on', x === b));
     if (key === 'home') {
@@ -5559,7 +5920,7 @@
       showView('feed');
       return;
     }
-    toast(NAV_SOON[key]);
+    if (NAV_SOON[key]) toast(NAV_SOON[key]);
   }));
 
   // Home stays lit whenever the feed or chat is on screen
@@ -5570,7 +5931,7 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    setRail(false);
+    dismissRail();
     if (histEl.classList.contains('on')) setHistory(false);
   });
 
@@ -6666,6 +7027,7 @@ const aboutCard = (p) => `
               </div>
             </span>
           </div>
+          <div class="col-meta"></div>
           <hr>
         </div>
         <div class="col-body">${colStatusHTML('about')}</div>
@@ -6701,17 +7063,34 @@ const aboutCard = (p) => `
           const el = w.firstElementChild;
           el.classList.add('in');
           sk.replaceWith(el);
-          if (i === list.length - 1) setColStatus('about', 'Brand memory saved');
+          collapseIntros();
         });
       });
     };
 
-    // what each column says it is doing, next to its title, while the feed is built
+    // the line under each column title while the feed is built: the intro card's
+    // title, shimmering. It is written up front but only shows once the intro
+    // cards have collapsed (body.cards-live)
     const SETUP_COLS = ['about', 'creatives', 'ads', 'storefront', 'visibility'];
-    const setColStatus = (k, text) => {
-      const now = deckEl.querySelector(`.col[data-col="${k}"] .col-now`);
-      if (!now) return;
-      now.innerHTML = `<span class="col-live">${MATRIX}<span class="what" style="--sh:2.8s">${text}</span></span>`;
+    const setColStatus = (k) => {
+      const meta = deckEl.querySelector(`.col[data-col="${k}"] .col-meta`);
+      const c = COL_STATUS[k];
+      if (!meta || !c) return;
+      meta.innerHTML = `<span class="col-live">${MATRIX}<span class="what" style="--sh:2.8s">${c.title}</span></span>`;
+    };
+
+    // the intro cards stay up until the first real card lands in any column;
+    // then every one of them folds away at once and its title moves under the heading
+    let introsUp = true;
+    const collapseIntros = () => {
+      if (!introsUp) return;
+      introsUp = false;
+      document.body.classList.add('cards-live');
+      deckEl.querySelectorAll('.col-status').forEach(el => {
+        el.style.maxHeight = el.offsetHeight + 'px';
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('gone')));
+        at(520, () => el.remove());
+      });
     };
 
     // the real feed cards, arriving one at a time behind a skeleton
@@ -6733,6 +7112,7 @@ const aboutCard = (p) => `
           const el = w.firstElementChild;
           el.classList.add('in');
           sk.replaceWith(el);
+          collapseIntros();
         });
       });
     };
@@ -6802,10 +7182,9 @@ const aboutCard = (p) => `
         say(line, () => {
           const said = line.replace(/\.$/, '');
           if (i === 1) fillAbout();
-          if (i <= 2) setColStatus('about', said);
           const col = cols[i % cols.length];
           const ag = agents[i % agents.length];
-          if (col) { fillCol(col); setColStatus(col, said); }
+          if (col) fillCol(col);
           if (ag) wakeAgent(ag, said);
         });
       });
@@ -6814,7 +7193,6 @@ const aboutCard = (p) => `
       AG_ORDER.forEach((k, i) => at(2200 + i * 7000, () => wakeAgent(k, 'Reading your store', true, true)));
 
       streamDone = () => {
-        SETUP_COLS.forEach(k => setColStatus(k, k === 'about' ? 'Brand memory saved' : 'Posting to your feed'));
         AG_ORDER.forEach(k => wakeAgent(k, 'Posting to your feed', true, true));
         document.getElementById('su-done').classList.add('on');
       };
@@ -6829,7 +7207,7 @@ const aboutCard = (p) => `
 
     const reallyOpenFeed = () => {
       document.body.classList.remove('setup-out');
-      document.body.classList.remove('setup', 'setup-run', 'su-expanded');
+      document.body.classList.remove('setup', 'setup-run', 'su-expanded', 'cards-live');
       document.getElementById('su-done').classList.remove('on');
       window.__setBrand(BRAND.name);
       // the deck is now a real deck: rebuild it properly and hand the feed over
@@ -6840,7 +7218,9 @@ const aboutCard = (p) => `
       window.scrollTo(0, 0);
       document.body.classList.add('feed-in');
       setTimeout(() => document.body.classList.remove('feed-in'), 800);
-      toast(`${BRAND.name} is set up. This is your feed.`);
+      // no toast here — the always-first intro card already tells this story
+      // ("Your agents work. This is where it lands."), so a transient popup on
+      // top of it was saying the same thing twice, worse
     };
 
     const begin = (host, fresh) => {
@@ -6870,7 +7250,9 @@ const aboutCard = (p) => `
         }
         deckEl.querySelectorAll('.col').forEach(c => c.classList.add('waiting'));
         window.__paintDeckTabs();
-        SETUP_COLS.forEach(k => setColStatus(k, k === 'about' ? 'Reading your store' : 'Waiting on the brand'));
+        introsUp = true;
+        document.body.classList.remove('cards-live');
+        SETUP_COLS.forEach(setColStatus);
         sideEl.innerHTML = suHTML();
       });
       at(1000, run);

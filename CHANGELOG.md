@@ -2,6 +2,20 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-20 — Rebuilt on the latest feed-cosmix code (266e3bd), HolyDrip content re-applied
+
+The first HolyDrip commit was made on a copy of feed-cosmix that was 45 commits behind. This one takes feed-cosmix's current `index.html` as the base and re-applies every HolyDrip change on top, so the fork now carries everything the Cosmix build has learned since 18 September:
+
+- **Left rail, collapsed and expanded.** Collapsed it shows Home, Search and Agents only; the other items, the foot (notifications, theme, credits, workspace badge) and their labels fold away. Hovering an icon shows its name; hovering Agents opens the agents fly-out, titled "Agents" while the rail is collapsed. Clicking the logo opens the rail to 236px and the page moves over to make room (no dim, no drawer) on desktop; on a phone it stays a drawer with a scrim. Hover no longer opens the rail.
+- **Top bar.** The deck toggle (or the Pro invitation) now sits at the top right on the Feed tab; on the Chat tab the credits take that spot and the toggle moves into the rail foot. The Feed | Chat pill is centred and its padding widened.
+- **Intro card.** The feed opens with a three-slide intro card (This is your feed / Jam with agents or humans / Approve and publish), shown once per load, dots in the header row. Its three illustrations were re-graded from Cosmix green to the HolyDrip steel blue and bone, and the wash under the headline is near-black blue.
+- **Feed.** Unrevealed cards rest at 20% so the next one peeks; the setup-complete toast is gone (the intro card covers it); the setup columns fold their intro line into a status line once the first card lands; more air between tabs, stories and feed.
+- **GEO object.** The visibility cards in feed-cosmix now template from one `GEO` object. HolyDrip's copy of it holds placeholder numbers for a pre-launch, social-first brand (score 12, cited on 0 of 8 discovery prompts, Myntra / Amazon / Ajio / Tata CLiQ / Reddit as the cited sources). Nothing reads from it yet in this fork; it is there so the next visibility card can.
+
+Content changes made to feed-cosmix in that range (the Launch Reveal creative, the Cosmix GEO report cards, the Editorial Pour text card) are Cosmix-only and were not carried over. All HolyDrip cards, stories, signals, brand memory and assets from the previous entry are unchanged.
+
+For future ports: feed-cosmix is registered as the local git remote `cosmix-local` in this repo, so `git fetch cosmix-local` and a cherry-pick or diff is one step.
+
 ## 2026-09-20 — HolyDrip: the whole prototype rebranded from Cosmix
 
 This fork now reads as HolyDrip, the premium menswear marketplace (holydrip.club, @holydrip.club). Nothing structural changed; every piece of brand content did.
