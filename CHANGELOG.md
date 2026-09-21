@@ -2,6 +2,17 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-21 — Catalog posts trimmed: one SKU each, one image each, shorter copy
+
+Follow-up to the same-day catalog rebuild. The four posts mixed sellers in carousels and ran long. Reworked all four to one SKU per post, one image per post (no carousels), and one-sentence descriptions:
+
+- **Apply the shot standard to Rare Rabbit** — was a four-seller carousel, now a single Rare Rabbit shot.
+- **Publish Codebrwn as a live listing** *(replaces "Publish six sellers into the live catalog")* — the six-seller data-row card is gone; this is a plain single-listing approval for one seller instead.
+- **Open Socks with Mint & Oak** — down from two images to one.
+- **Open Bags with Dedh-Shana** — down from four images to one.
+
+The unused multi-shot assets (trousers, tee, cap, extra bag and jacket angles) are still in `assets/` in case a later post wants them; nothing was deleted.
+
 ## 2026-09-21 — Six real sellers land in the Catalog column, plus the animated agent avatars
 
 Real product photography arrived for six sellers across seven SKUs: Rare Rabbit (shirt, trousers), Dedh-Shana (handbag), The Souled Store (graphic tee), 52 Degree (cap), Codebrwn (jacket) and Mint & Oak (socks). The Catalog column, which had been carrying nothing but The Cloud Tee since launch, is rebuilt around this real intake.
