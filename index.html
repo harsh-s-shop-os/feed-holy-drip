@@ -3436,10 +3436,10 @@
     <span class="cta-wrap">
       <button class="cta-go" id="start-go" type="button"><span class="cta-label">Build My Team</span>
         <span class="cta-ags" aria-hidden="true">
-          <img src="assets/agent-creative.svg" alt="">
-          <img src="assets/agent-performance.svg" alt="">
-          <img src="assets/agent-visibility.svg" alt="">
-          <img src="assets/agent-storefront.svg" alt="">
+          <img src="assets/face-pre-1.svg" alt="">
+          <img src="assets/face-pre-2.svg" alt="">
+          <img src="assets/face-pre-3.svg" alt="">
+          <img src="assets/face-pre-4.svg" alt="">
         </span>
         <svg class="cta-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </button>
@@ -3906,6 +3906,57 @@
     orchestrator: { name: 'ShopOS',               avatar: 'assets/agent-orchestrator.svg'  }
   };
 
+  /* ---------------- animated agent faces ----------------
+     the shape itself is the avatar: a gradient-filled shape with two eyes
+     knocked straight through to the background (no pupils, no enclosing disc).
+     shape + hue identify the agent; L and C are derived from the hue so every
+     colour stays punchy. the gradient rotates slowly; the eyes hold, then make
+     small saccades. hue is a brand-derived value. four shapes, four agents. */
+  const FACE = {
+    creative:   ['tri',       255],
+    performance:['hex',       315],
+    storefront: ['square',     15],
+    visibility: ['circle',     75],
+    crm:        ['square',    135]
+  };
+  const FSHAPE = {
+    square:'<rect x="8" y="8" width="84" height="84" rx="25" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="0"/>',
+    circle:'<circle cx="50" cy="50" r="45" fill="var(--fg2)"/>',
+    hex:'<polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="14" stroke-linejoin="round"/>',
+    tri:'<polygon points="50,14 86,78 14,78" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="17" stroke-linejoin="round"/>'
+  };
+  const FECY = { square:50, circle:50, hex:52, tri:60 };
+  const fLC = (h) => { const ty = Math.cos((h-95)*Math.PI/180); return [0.63+0.10*ty, 0.175-0.02*ty]; };
+  const fcol = (h,dl=0,dh=0) => { const [L,C]=fLC(h+dh); return `oklch(${(L+dl).toFixed(3)} ${C.toFixed(3)} ${(h+dh).toFixed(1)})`; };
+  let _fid = 0;
+  const faceHue = (k) => FACE[k] ? FACE[k][1] : 255;
+  function faceAvatar(key, cls = 'avatar') {
+    const f = FACE[key];
+    if (!f) return `<img class="${cls}" src="${(AGENTS[key]||{}).avatar || 'assets/agent-orchestrator.svg'}" alt="">`;
+    const [shape, h] = f, id = 'f' + (_fid++), ecy = FECY[shape];
+    const eye = (x) => `<rect x="${x}" y="${ecy-8}" width="10" height="16" rx="5"/>`;
+    const ph = -(Math.random()*5).toFixed(2), gdur = (14+Math.random()*5).toFixed(1), dur = (9+Math.random()*3).toFixed(1);
+    const sac = () => (1.1 + Math.random()*0.8).toFixed(1) * (Math.random()<.5?-1:1);
+    const v = `0 0; 0 0; ${sac()} ${sac()}; ${sac()} ${sac()}; 0 0; 0 0; ${sac()} ${sac()}; 0 0`;
+    const ks = '.5 0 .3 1;'.repeat(7).slice(0,-1);
+    const shapeMarkup = FSHAPE[shape].replace(/var\(--fg2\)/g, `url(#${id}g)`);
+    return `<svg class="${cls}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="${fcol(h,-0.05)}"/><stop offset="1" stop-color="${fcol(h,0.12,30)}"/>
+          <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="${gdur}s" begin="${ph}s" repeatCount="indefinite"/>
+        </linearGradient>
+        <mask id="${id}m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+          <rect width="100" height="100" fill="#fff"/>
+          <g fill="#000">${eye(33)}${eye(57)}
+            <animateTransform attributeName="transform" type="translate" values="${v}" keyTimes="0;0.3;0.36;0.5;0.56;0.76;0.82;1" calcMode="spline" keySplines="${ks}" dur="${dur}s" begin="${ph}s" repeatCount="indefinite"/>
+          </g>
+        </mask>
+      </defs>
+      <g mask="url(#${id}m)">${shapeMarkup}</g>
+    </svg>`;
+  }
+
   // Every number on an AI Visibility card comes from here and nowhere else.
   // Placeholder GEO object for HolyDrip: no audit exists yet (pre-launch, one live
   // listing). Numbers are invented to be plausible for a social-first brand with
@@ -3937,9 +3988,9 @@
 
   const POSTS = [
     { agent:'storefront', time:'12 min', ratio:'square',
-      images:['assets/hd-model-front.jpg','assets/hd-ghost.jpg','assets/hd-colour-01-frost.jpg'],
-      title:'Set one shot order for every seller listing',
-      sub:'On-model, ghost and flat cutout sit on the first drop’s listing in no fixed order, every frame shot to the seller’s own template. Suggested order is on-model, then construction, then colour, applied at intake so the grid reads as HolyDrip and not as nine different stores. Approving applies it to The Cloud Tee and adds it to the intake spec.',
+      images:['assets/hd-rr-shirt-full.jpg','assets/hd-cb-jkt-front.jpg','assets/hd-tss-tee-front.jpg','assets/hd-52d-cap-onhead.jpg'],
+      title:'Apply the shot order standard to the six new sellers',
+      sub:'Rare Rabbit, Dedh-Shana, The Souled Store, 52 Degree, Codebrwn and Mint & Oak have all sent their first submissions, each shot to its own template. Suggested order is on-model, then construction, then colour, the same standard already applied to The Cloud Tee. Approving normalises all six intake sets to it before anything goes to review.',
       cta:{ label:'Approve the standard' } },
 
     { agent:'creative', time:'20 min', ratio:'square', campaign:'Manifesto Drop',
@@ -3964,22 +4015,16 @@
       sub:'Both cleared half a million likes organically and have only ever reached the people the algorithm picked. The set is drafted against lookalikes of your engagers, no product in frame and no call to action, so it buys reach for the brand rather than the drop. Approving builds it.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
-    { agent:'storefront', time:'45 min',
-      chart:{
-        title:'The verdict, drafted as a catalog module',
-        max:105,
-        note:'Drafted for The Cloud Tee. One card per drop from here on.',
-        rows:[
-          { label:'The Cloud Tee',  value:91, brand:true },
-          { label:'Uniqlo',            value:86 },
-          { label:'Zara',              value:82 },
-          { label:'M&S',               value:81 },
-          { label:'H&M',               value:72 }
-        ]
-      },
-      title:'Add the twenty-brand ranking to the drop page',
-      sub:'You tested twenty tees on GSM, breathability, fit, fabric, price and longevity, and that verdict lives only in a reel. It is drafted here as a catalog module with all six scores. Approving publishes it on the Cloud Tee and leaves the blank module on every future drop.',
-      cta:{ label:'Approve the module' } },
+    { agent:'storefront', time:'40 min',
+      rows:[['Rare Rabbit','Shirt + trousers, 8 shots'],
+            ['Dedh-Shana','Handbag, 4 shots'],
+            ['The Souled Store','Graphic tee, 4 shots'],
+            ['52 Degree','Cap, 4 shots'],
+            ['Codebrwn','Jacket, 4 shots'],
+            ['Mint & Oak','Socks, 2 shots']],
+      title:'Publish six sellers into the live catalog',
+      sub:'Every seller in this batch has a complete intake set on the shot standard, the first time six have cleared it in the same pass. The Cloud Tee stays the only member drop. These publish as ordinary catalog listings underneath it. Approving adds all six to the site catalog.',
+      cta:{ label:'Publish the six listings' } },
 
     { agent:'creative', time:'1 hr', ratio:'square', campaign:'Fit Rules',
       images:['assets/hd-styled-trio.jpg','assets/hd-reel-v-shaped.jpg'],
@@ -4008,10 +4053,16 @@
       cta:{ label:'Open report' } },
 
     { agent:'storefront', time:'5 hr', ratio:'square',
-      images:['assets/hd-eight-colours.jpg','assets/hd-rail-8.jpg'],
-      title:'Move the members-only colourway to the first slot',
-      sub:'The seller made one colourway exclusively for the HolyDrip community and it currently sits fourth in a rail of eight. Putting it first, marked exclusive, makes membership the first thing a buyer reads. Approving reorders the rail. Nothing else on the page changes.',
-      cta:{ label:'Apply to the drop' } }
+      images:['assets/hd-mo-socks-pair.jpg','assets/hd-mo-socks-onfeet.jpg'],
+      title:'Open Socks, the one category still empty',
+      sub:'Socks has sat on the category list since launch planning with nothing under it. Mint & Oak\u2019s first submission, a taxi-print ankle sock shot flat and worn, is ready to be the listing that opens it. Approving adds Socks to the live category rail.',
+      cta:{ label:'Add to the catalog' } },
+
+    { agent:'storefront', time:'6 hr', ratio:'square',
+      images:['assets/hd-ds-bag-front.jpg','assets/hd-ds-bag-interior.jpg','assets/hd-ds-bag-half.jpg','assets/hd-ds-bag-back.jpg'],
+      title:'Open Bags, a category not yet on the roadmap',
+      sub:'Dedh-Shana sent the most complete set in this batch, four angles including the interior, for a category the original nine never listed. Accessories were always the likely next expansion past apparel. Approving adds Bags as a category and this listing as its first.',
+      cta:{ label:'Add to the catalog' } }
   ];
 
   /* ---------------- icons (lucide) ---------------- */
@@ -4261,7 +4312,7 @@
     return `
     <article class="card${p.rows ? ' is-data' : ''}${isText(p) ? ' is-text' : ''}" data-post="${idx}" data-agent="${p.agent}">
       <div class="card-head">
-        <img class="avatar" src="${a.avatar}" alt="">
+        ${faceAvatar(p.agent)}
         <span class="identity">
           <span class="agent-name">${a.name}</span>
         </span>
@@ -4426,9 +4477,10 @@
   };
   // catalog is its own segment: the product feed itself, mostly the creative director
   const CATALOG = new Set([
-    'Set one shot order for every seller listing',
-    'Add the twenty-brand ranking to the drop page',
-    'Move the members-only colourway to the first slot'
+    'Apply the shot order standard to the six new sellers',
+    'Publish six sellers into the live catalog',
+    'Open Socks, the one category still empty',
+    'Open Bags, a category not yet on the roadmap'
   ]);
   const sectorOf = (p) => CATALOG.has(p.title) ? 'catalog' : SECTOR_BY_AGENT[p.agent];
   const byAgent = (k) => ALL_POSTS.filter(p => sectorOf(p) === k);
@@ -6052,27 +6104,27 @@
     // one brand colour per slide, in the same order as that story's ring blobs
     // (story-1/2/3.svg), so the circle and the story it opens read as one thing
     trends: { title:'Trends', avatar:'assets/agent-performance.svg', slides:[
-      { c:'#0b0b0b', h:'Heavyweight is the category',
+      { c:'#764cd1', h:'Heavyweight is the category',
         p:'Searches for 240 GSM and up are climbing every month, and the language has moved from soft to structured.' },
-      { c:'#5c1421', h:'Made-in is the hook',
+      { c:'#9b45bd', h:'Made-in is the hook',
         p:'Reels that open inside a mill or a workshop hold attention longer than reels that open on a product.' },
-      { c:'#7f98a8', h:'No logo is a position',
+      { c:'#bb45a2', h:'No logo is a position',
         p:'Plain, logo-free essentials are outperforming branded basics with the audience that follows you.' }
     ]},
     new: { title:'What is new', avatar:'assets/agent-creative.svg', slides:[
-      { c:'#5c1421', h:'Every ratio, one feed',
+      { c:'#007fce', h:'Every ratio, one feed',
         p:'Cards now post at 4:5, 1:1 and 16:9, matched to wherever the work is actually going to run.' },
-      { c:'#7f98a8', h:'Remix with Agent',
+      { c:'#0069da', h:'Remix with Agent',
         p:'Take any post into chat, tell the agent what to change, and get three directions back.' },
-      { c:'#0b0b0b', h:'Jam with the team',
+      { c:'#5556d9', h:'Jam with the team',
         p:'Pull a ShopOS specialist onto any post. They pick it up on WhatsApp and stay on it with you.' }
     ]},
     howto: { title:'How to', avatar:'assets/agent-visibility.svg', slides:[
-      { c:'#7f98a8', h:'Tune the feed by liking',
+      { c:'#eb7f2d', h:'Tune the feed by liking',
         p:'Every like teaches the agents what to post more of. The feed narrows to your brand within a week.' },
-      { c:'#0b0b0b', h:'Start from a post, not a prompt',
+      { c:'#de9500', h:'Start from a post, not a prompt',
         p:'A blank box asks you to know the answer. A post gives you something to push against.' },
-      { c:'#5c1421', h:'Jam when it needs a person',
+      { c:'#c3a600', h:'Jam when it needs a person',
         p:'Pull the team into any card. The thread keeps the brief, so nobody starts from scratch.' }
     ]},
     ads: { title:'Top reels', avatar:'assets/agent-storefront.svg', slides:[
@@ -6794,8 +6846,8 @@ const HD_ABOUT = [
         tags:['Marketplace', 'Pre-launch', 'Custom stack', 'Instagram-first', { t:'Add team size', gap:true }] },
       { agent:'orchestrator', about:true, editable:true,
         title:'Product catalog',
-        sub:'One live listing today, The Cloud Tee, in eight colourways at ₹2,500 with a ₹2,000 member price. The wider catalog is being read from seller submissions across nine categories and is not on the site yet.',
-        tags:['The Cloud Tee', '8 colourways', 'Tees', 'Sweatshirts', 'Kurtas', 'Bottoms', 'Perfume', 'Eyewear'] },
+        sub:'One live listing today, The Cloud Tee, in eight colourways at ₹2,500 with a ₹2,000 member price. Six more sellers are read in and waiting to publish: Rare Rabbit, Dedh-Shana, The Souled Store, 52 Degree, Codebrwn and Mint & Oak, across shirts, trousers, tees, caps, jackets, bags and socks.',
+        tags:['The Cloud Tee', '8 colourways', 'Rare Rabbit', 'Dedh-Shana', 'The Souled Store', '52 Degree', 'Codebrwn', 'Mint & Oak'] },
       { agent:'orchestrator', about:true, editable:true,
         title:'Product information',
         sub:'The Cloud Tee is 260 GSM pure cotton in a 2mm ottoman knit, bio-washed, structured fit with a straight fall, lab tested to 50+ washes and made by 60+ craftsmen in Tiruppur. Fourteen-day returns over WhatsApp, delivery always free. The listing ranks itself 9.1 against Uniqlo, Zara, M&S and H&M.' },

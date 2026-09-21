@@ -2,6 +2,22 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-21 — Six real sellers land in the Catalog column, plus the animated agent avatars
+
+Real product photography arrived for six sellers across seven SKUs: Rare Rabbit (shirt, trousers), Dedh-Shana (handbag), The Souled Store (graphic tee), 52 Degree (cap), Codebrwn (jacket) and Mint & Oak (socks). The Catalog column, which had been carrying nothing but The Cloud Tee since launch, is rebuilt around this real intake.
+
+**Catalog is now four posts, up from three** (the standing three-per-column rule was raised for this column only, at the user's call):
+- **Apply the shot order standard to the six new sellers** — the existing shot-standard post, now illustrated with real images from four of the six sellers instead of Cloud Tee placeholders.
+- **Publish six sellers into the live catalog** *(new)* — a data-row card naming each seller, its category and shot count. Replaces the old twenty-brand ranking chart, which was Cloud-Tee-specific and didn't transfer to six unrelated categories.
+- **Open Socks, the one category still empty** *(new)* — Socks was named in the original nine-category plan but never had a listing. Mint & Oak's taxi-print ankle socks (flat pair + worn) are proposed as the one that opens it.
+- **Open Bags, a category not yet on the roadmap** *(new)* — Dedh-Shana's set is the most complete of the six (four angles including the interior). Bags isn't one of the original nine categories, so this is flagged as a genuine expansion, not a gap fill.
+
+The "Product catalog" card in the onboarding/Brand Memory rail was updated to name the six sellers now in intake, replacing the generic "seller submissions across nine categories" line. The Cloud Tee stays the only live member drop; nothing about that changed.
+
+**Not used.** Three of the batches came with short video clips (shirt, tee, bag 360°) plus one colour-grade clip (jacket). This build has no video rendering path for feed cards, so none of the four were used — flagging in case video support is worth building for a future batch like this.
+
+**Also committed in this pass, not from this session.** The working tree already had two uncommitted changes sitting in it when this session started: animated SVG agent avatars (a rotating-gradient shape with blinking/saccading eyes, replacing the static PNG-style avatar icons) and a recolour of the Trends/What's New/How To story slide accents away from the brand triad. Both looked finished, so they're included in this commit rather than held back, but neither was made by this session — worth a look to confirm they're intentional.
+
 ## 2026-09-20 — Every post is now a recommendation, written off HolyDrip's actual Instagram
 
 All fifteen feed posts were rewritten. The old set read as strategy theses aimed at the ShopOS team ("Only a marketplace can style across brands", "Your sellers will pay for the ads you have not launched") and several of them claimed work that was already finished. Neither is what the feed is for: every card is a suggestion the agent is making, with the draft behind it, and nothing moves until the brand approves.
