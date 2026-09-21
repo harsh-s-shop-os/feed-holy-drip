@@ -129,12 +129,18 @@
   .rail.open .rail-btn{width:100%}
   .rail.open .rail-label{opacity:1;transition-delay:.08s}
 
+  .rail-badge-wrap{
+    position:relative;flex:0 0 auto;
+    width:36px;margin-top:8px;
+    transition:width .34s cubic-bezier(.32,.72,0,1);
+  }
+  .rail.open .rail-badge-wrap{width:100%}
   .rail-badge{
-    flex:0 0 auto;display:flex;align-items:center;gap:12px;overflow:hidden;
-    width:36px;height:36px;padding:0;margin-top:8px;
+    display:flex;align-items:center;gap:12px;overflow:hidden;
+    width:100%;height:36px;padding:0;
     border:0;border-radius:10px;background:transparent;
     cursor:pointer;font:inherit;color:var(--fg-2);
-    transition:background .15s,width .34s cubic-bezier(.32,.72,0,1);
+    transition:background .15s;
   }
   .rail-badge .ini{
     width:36px;height:36px;flex:0 0 auto;border-radius:10px;
@@ -142,7 +148,6 @@
   }
   .rail-badge .ini img{width:100%;height:100%;object-fit:cover;display:block}
   .rail-badge:hover{background:#1a1a1a;color:var(--fg)}
-  .rail.open .rail-badge{width:100%}
 
   /* The utilities the top bar used to carry on its right: the view toggle,
      notifications and theme. They live at the foot of the rail so the top bar
@@ -179,7 +184,9 @@
      same one it shows when the rail is open. Open, every label is already on
      screen, so the tips stay out of the way. */
   .rail:not(.open) .rail-item:hover > .rail-tip,
-  .rail:not(.open) .rail-item:focus-within > .rail-tip{
+  .rail:not(.open) .rail-item:focus-within > .rail-tip,
+  .rail:not(.open) .rail-badge-wrap:hover > .rail-tip,
+  .rail:not(.open) .rail-badge-wrap:focus-within > .rail-tip{
     opacity:1;visibility:visible;transform:none;
   }
   .rail.open .rail-tip{display:none}
@@ -357,23 +364,22 @@
      badge) folds to zero height and comes back as the rail widens, so the
      three icons do not jump when the rest arrives. On a phone the rail is a
      drawer that is only ever seen open, so none of this applies there. */
-  .rail-item,.rail-foot,.rail-badge{
+  .rail-item,.rail-foot{
     transition:max-height .34s cubic-bezier(.32,.72,0,1),opacity .2s ease,
                margin .34s cubic-bezier(.32,.72,0,1),padding .34s cubic-bezier(.32,.72,0,1),
                width .34s cubic-bezier(.32,.72,0,1),background .15s;
   }
   .rail-item{max-height:36px}
   .rail-foot{max-height:260px}
-  .rail-badge{max-height:36px}
   @media (min-width:701px){
     .rail:not(.open) .rail-nav .rail-item:not([data-item="home"]):not([data-item="search"]):not([data-item="agents"]),
-    .rail:not(.open) .rail-foot,
-    .rail:not(.open) .rail-badge{
+    .rail:not(.open) .rail-foot .rail-item:not([data-item="alerts"]){
       max-height:0;opacity:0;overflow:hidden;pointer-events:none;
-      margin-top:-4px;   /* swallow the nav's 4px gap so the three icons stay adjacent */
+      margin-top:-4px;   /* swallow the nav's 4px gap so the icons stay adjacent */
     }
-    .rail:not(.open) .rail-foot{padding-top:0;margin-top:0;border-top-color:transparent}
-    .rail:not(.open) .rail-badge{margin-top:0}
+    /* the foot's divider only makes sense once labels are on screen to divide
+       from; collapsed, Notifications sits right under Agents with no line */
+    .rail:not(.open) .rail-foot{border-top-color:transparent}
   }
 
   .rail-scrim{
@@ -383,7 +389,7 @@
   .rail-scrim.on{opacity:1;visibility:visible}
 
   @media (prefers-reduced-motion:reduce){
-    .rail,.rail-btn,.rail-badge{transition:none}
+    .rail,.rail-btn,.rail-badge,.rail-badge-wrap{transition:none}
   }
 
   /* ---------- top bar ---------- */
@@ -2256,7 +2262,7 @@
     .rail.open{width:min(280px,86vw);transform:none;box-shadow:26px 0 60px rgba(0,0,0,.55)}
     .rail .rail-logo{width:100%;padding:0 6px}
     .rail .rail-word{opacity:1}
-    .rail .rail-btn,.rail .rail-badge{width:100%}
+    .rail .rail-btn,.rail .rail-badge-wrap{width:100%}
     .rail .rail-label{opacity:1}
     .rail-tip{display:none}
     .tb-menu{display:grid}
@@ -3373,10 +3379,13 @@
     </div>
   </div>
 
-  <button class="rail-badge" aria-label="HolyDrip workspace">
-    <span class="ini"><img src="assets/hd-mark.jpg" alt="" width="36" height="36"></span>
-    <span class="rail-label">HolyDrip</span>
-  </button>
+  <div class="rail-badge-wrap">
+    <button class="rail-badge" aria-label="HolyDrip workspace">
+      <span class="ini"><img src="assets/hd-mark.jpg" alt="" width="36" height="36"></span>
+      <span class="rail-label">HolyDrip</span>
+    </button>
+    <span class="rail-tip">HolyDrip workspace</span>
+  </div>
 </aside>
 
 <section class="start" id="start">
@@ -3436,10 +3445,10 @@
     <span class="cta-wrap">
       <button class="cta-go" id="start-go" type="button"><span class="cta-label">Build My Team</span>
         <span class="cta-ags" aria-hidden="true">
-          <img src="assets/face-pre-1.svg" alt="">
-          <img src="assets/face-pre-2.svg" alt="">
-          <img src="assets/face-pre-3.svg" alt="">
-          <img src="assets/face-pre-4.svg" alt="">
+          <img src="assets/agent-creative.svg" alt="">
+          <img src="assets/agent-performance.svg" alt="">
+          <img src="assets/agent-visibility.svg" alt="">
+          <img src="assets/agent-storefront.svg" alt="">
         </span>
         <svg class="cta-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </button>
@@ -3912,47 +3921,6 @@
      shape + hue identify the agent; L and C are derived from the hue so every
      colour stays punchy. the gradient rotates slowly; the eyes hold, then make
      small saccades. hue is a brand-derived value. four shapes, four agents. */
-  const FACE = {
-    creative:   ['diamond',   255],
-    performance:['hex',       315],
-    storefront: ['square',     15],
-    visibility: ['circle',     75],
-    crm:        ['square',    135]
-  };
-  const FSHAPE = {
-    square:'<rect x="8" y="8" width="84" height="84" rx="25" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="0"/>',
-    circle:'<circle cx="50" cy="50" r="45" fill="var(--fg2)"/>',
-    hex:'<polygon points="50,12.2 84.2,32 84.2,68 50,87.8 15.8,68 15.8,32" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="12" stroke-linejoin="round"/>',
-    diamond:'<rect x="12" y="12" width="76" height="76" rx="20" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="0" transform="rotate(45 50 50)"/>'
-  };
-  const FECY = { square:50, circle:50, hex:52, diamond:50 };
-  const fLC = (h) => { const ty = Math.cos((h-95)*Math.PI/180); return [0.63+0.10*ty, 0.175-0.02*ty]; };
-  const fcol = (h,dl=0,dh=0) => { const [L,C]=fLC(h+dh); return `oklch(${(L+dl).toFixed(3)} ${C.toFixed(3)} ${(h+dh).toFixed(1)})`; };
-  let _fid = 0;
-  const faceHue = (k) => FACE[k] ? FACE[k][1] : 255;
-  function faceAvatar(key, cls = 'avatar') {
-    const f = FACE[key];
-    if (!f) return `<img class="${cls}" src="${(AGENTS[key]||{}).avatar || 'assets/agent-orchestrator.svg'}" alt="">`;
-    const [shape, h] = f, id = 'f' + (_fid++), ecy = FECY[shape];
-    const eye = (x) => `<rect x="${x}" y="${ecy-8}" width="10" height="16" rx="5" fill="#fff"/>`;
-    const ph = -(Math.random()*5).toFixed(2), gdur = (14+Math.random()*5).toFixed(1), dur = (9+Math.random()*3).toFixed(1);
-    const sac = () => (1.1 + Math.random()*0.8).toFixed(1) * (Math.random()<.5?-1:1);
-    const v = `0 0; 0 0; ${sac()} ${sac()}; ${sac()} ${sac()}; 0 0; 0 0; ${sac()} ${sac()}; 0 0`;
-    const ks = '.5 0 .3 1;'.repeat(7).slice(0,-1);
-    const shapeMarkup = FSHAPE[shape].replace(/var\(--fg2\)/g, `url(#${id}g)`);
-    return `<svg class="${cls}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="${fcol(h,-0.05)}"/><stop offset="1" stop-color="${fcol(h,0.12,30)}"/>
-          <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="${gdur}s" begin="${ph}s" repeatCount="indefinite"/>
-        </linearGradient>
-      </defs>
-      ${shapeMarkup}
-      <g>${eye(33)}${eye(57)}
-        <animateTransform attributeName="transform" type="translate" values="${v}" keyTimes="0;0.3;0.36;0.5;0.56;0.76;0.82;1" calcMode="spline" keySplines="${ks}" dur="${dur}s" begin="${ph}s" repeatCount="indefinite"/>
-      </g>
-    </svg>`;
-  }
 
   // Every number on an AI Visibility card comes from here and nowhere else.
   // Placeholder GEO object for HolyDrip: no audit exists yet (pre-launch, one live
@@ -3985,15 +3953,15 @@
 
   const POSTS = [
     { agent:'storefront', time:'12 min', ratio:'square',
-      images:['assets/hd-rr-shirt-full.jpg'],
+      images:['assets/hd-rr-shirt-campaign.jpg'],
       title:'Apply the shot standard to Rare Rabbit',
-      sub:'Their first submission is shot to their own template, not HolyDrip\u2019s. Approving reshoots it to the intake standard already used on The Cloud Tee.',
+      sub:'This is their ad, not a product shot. House of Rare\u2019s logo and headline are baked into the frame, so it can\u2019t run next to five other brands in the catalog. Approving requests a plain reshoot, to the same standard used on The Cloud Tee.',
       cta:{ label:'Approve the standard' } },
 
     { agent:'creative', time:'20 min', ratio:'square', campaign:'Manifesto Drop',
       images:['assets/hd-reel-indian-men.jpg'],
       title:'Write the next drop announcement as a manifesto post',
-      sub:'Identity posts land at half a million likes, more than anything else on the account. One version is ready to generate: a single serif line on maroon velvet, no product in frame. Approving generates it for review.',
+      sub:'Identity posts land at half a million likes \u2014 more than anything else on the account. One version is ready to generate: a single serif line on maroon velvet, no product in frame. Approving generates it for review.',
       cta:{ label:'Generate the post' } },
 
     { agent:'performance', time:'35 min',
@@ -4009,7 +3977,7 @@
         ]
       },
       title:'Run the two manifesto posts as awareness ads to lookalikes',
-      sub:'Both cleared half a million likes organically and have only ever reached the people the algorithm picked. The set is drafted against lookalikes of your engagers, no product in frame and no call to action, so it buys reach for the brand rather than the drop. Approving builds it.',
+      sub:'Both posts cleared half a million likes organically, but only ever reached people the algorithm already knew. The set is drafted against lookalikes of your engagers \u2014 no product, no call to action. It buys reach for the brand, not the drop. Approving builds it.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'storefront', time:'40 min', ratio:'square',
@@ -4021,19 +3989,19 @@
     { agent:'creative', time:'1 hr', ratio:'square', campaign:'Fit Rules',
       images:['assets/hd-styled-trio.jpg'],
       title:'Shoot the Cloud Tee on the three body types from Drip Tips',
-      sub:'The account already coaches V-shaped, shorter and broader, and tall and lean, while the drop is shot on one model. One image is ready to generate, all three builds styled side by side in the same Cloud Tee. Approving generates it.',
+      sub:'The account already coaches three body types \u2014 V-shaped, shorter and broader, tall and lean \u2014 but the drop is shot on one model. One image is ready to generate: all three builds, styled side by side in the same Cloud Tee. Approving generates it.',
       cta:{ label:'Generate the image' } },
 
     { agent:'storefront', time:'1 hr', ratio:'square',
       images:['assets/hd-brand-story.jpg','assets/hd-ultimate-tee.jpg'],
       title:'Add a HolyDrip verdict block above the product spec',
-      sub:'The drop page reads as the seller’s from the first pixel, and the reason to buy it here rather than direct from them appears nowhere on it. The block is written: tested twenty, picked one, exclusive colour made for members. Approving publishes it over your CMS, above the existing spec.',
+      sub:'The drop page reads as the seller’s, not HolyDrip’s \u2014 nothing on it says why to buy here instead of direct. The block is written: tested twenty, picked one, exclusive colour made for members. Approving publishes it through your CMS, above the existing spec.',
       cta:{ label:'Publish the block' } },
 
     { agent:'creative', time:'2 hr', ratio:'square', campaign:'Tested 20',
       images:['assets/hd-lab-qr.jpg'],
       title:'Turn the twenty-brand test into a shareable graphic',
-      sub:'The strongest claim you make about a drop has never been written down anywhere a buyer can save it or send it on. One graphic is ready: the tee on a lab bench with its score against the four high-street names you tested it against. Approving generates it.',
+      sub:'Your strongest claim about the drop has never been written down anywhere a buyer can save or send it. One graphic is ready: the tee on a lab bench, scored against the four high-street names you tested it against. Approving generates it.',
       cta:{ label:'Generate the graphic' } },
 
     { agent:'visibility', time:'3 hr',
@@ -4041,7 +4009,7 @@
         label:d.short, full:`${d.label} · ${d.weight}% of the score`, value:d.value,
         color:['#ff375f','#a8ff2e','#22d3ee'][i] })) },
       title:'Publish one page that tells engines what HolyDrip is',
-      sub:`Ask an engine where Indian men buy premium basics and it names Myntra, Ajio and Amazon, because HolyDrip has 410k followers and nothing an engine can read. The score is ${GEO.score}, and the three weakest dimensions carry ${GEO.lowWeight}% of it. The report sets out what that page has to say.`,
+      sub:`Ask an engine where Indian men buy premium basics, and it names Myntra, Ajio and Amazon. HolyDrip has 410k followers but nothing an engine can actually read. The score is ${GEO.score} \u2014 the three weakest dimensions carry ${GEO.lowWeight}% of it. The report sets out what the page needs to say.`,
       cta:{ label:'Open report' } },
 
     { agent:'storefront', time:'5 hr', ratio:'square',
@@ -4304,7 +4272,7 @@
     return `
     <article class="card${p.rows ? ' is-data' : ''}${isText(p) ? ' is-text' : ''}" data-post="${idx}" data-agent="${p.agent}">
       <div class="card-head">
-        ${faceAvatar(p.agent)}
+        <img class="avatar" src="${a.avatar}" alt="">
         <span class="identity">
           <span class="agent-name">${a.name}</span>
         </span>
@@ -4369,28 +4337,28 @@
     { agent:'performance', time:'6 min', ratio:'square', badge:['Needs you','info'],
       images:['assets/hd-reel-ultimate-indian-tee.jpg'],
       title:'Run the drop post as an engagement ad with an auto reply',
-      sub:'4,535 comments on that post, every one answered by hand so far. Approving runs the same post as an engagement ad with an automated reply that sends the access link \u2014 needs your Meta account to go live.',
+      sub:'4,535 comments on that post, every one answered by hand so far. Approving runs the same post as an engagement ad, with an automated reply that sends the access link.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'performance', time:'50 min', badge:['Watching','info'],
       rows:[['Commented DRIP','4,535'],['Unlocked member price','1,210'],
             ['Commented, never unlocked','3,325'],['Reachable as post engagers','all of them']],
       title:'Build a retargeting audience from the DRIP commenters',
-      sub:'Three thousand of them commented and never unlocked the member price. Meta already holds them as post engagers, so this needs no pixel and no site. Approving uploads the audience and queues one reminder frame, in the colourway they asked about.',
+      sub:'Three thousand of them commented and never unlocked the member price. Meta already holds them as post engagers, so this needs no pixel and no site. Approving uploads the audience and queues one reminder \u2014 in the colourway they asked about.',
       cta:{ label:'Approve the audience', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'storefront', time:'2 hr', badge:['Needs you','info'],
       rows:[['Members who unlocked','1,210'],['Asked for the number again','every drop'],
             ['Drops so far','1'],['Proposed','remember the unlock']],
       title:'Store the member unlock so returning buyers skip the gate',
-      sub:'Twelve hundred people have handed over a number and every new drop asks them for it again. Storing the unlock lands a returning member on the price instead of a form, while first-timers still see the gate. Approving ships the change to your CMS.',
+      sub:'Twelve hundred people have handed over a number, and every new drop asks them for it again. Storing the unlock skips the form for returning members \u2014 first-timers still see the gate. Approving ships the change to your CMS.',
       cta:{ label:'Approve the change' } },
 
     { agent:'storefront', time:'4 hr', badge:['Sitting idle','warn'],
       rows:[['Drops completed','1'],['Pages that outlive a drop','0'],
             ['Products live on the site','1'],['Proposed','/drops/cloud-tee, permanent']],
       title:'Give every closed drop a permanent page',
-      sub:'One product at a time means the site forgets each drop the moment the next one starts, so nothing accumulates. The first archive page is drafted at /drops/cloud-tee, carrying the verdict, the exclusive colour and a sold out mark. Approving publishes it.',
+      sub:'The site forgets each drop the moment the next one starts, so nothing accumulates. The first archive page is drafted at /drops/cloud-tee \u2014 it carries the verdict, the exclusive colour and a sold-out mark. Approving publishes it.',
       cta:{ label:'Approve the archive' } },
 
     { agent:'visibility', time:'30 min', badge:['Draft ready','ok'],
@@ -4399,7 +4367,7 @@
             ['Goes to','/tested/heavyweight-tees'],
             ['Still needs','FAQ block and FAQPage markup']],
       title:'Publish the heavyweight tee test as a page',
-      sub:'Engines quote ranked tests that show their method, and yours has never been written down anywhere a buyer or an engine can read it. The page is written, the winning tee at the top and the six criteria under it. Approving publishes it at /tested/heavyweight-tees, and the same shape repeats for every category you test next.',
+      sub:'Engines quote ranked tests that show their method. Yours has never been written down anywhere a buyer or an engine can read it. The page is written \u2014 the winning tee at the top, the six criteria under it. Approving publishes it at /tested/heavyweight-tees, and the same shape repeats for every category you test next.',
       cta:{ label:'Review the draft' } },
 
     { agent:'visibility', time:'6 hr', badge:['Sitting idle','warn'],
@@ -4408,7 +4376,7 @@
             ['The twenty-brand test','not attributed to HolyDrip'],
             ['Brand mentions score', `${GEO.dims[3].value} of 100`]],
       title:'Add Organization markup linking the site and both handles',
-      sub:'Nothing anywhere tells an engine that HolyDrip is a store, which is why brand mentions score 14 out of 100. The markup is written, covering the site, both Instagram handles and the founder story. Approving adds it through your CMS. It is the cheapest of the three visibility fixes.',
+      sub:'Nothing tells an engine that HolyDrip is a store \u2014 that\u2019s why brand mentions score 14 out of 100. The markup is written, covering the site, both Instagram handles and the founder story. Approving adds it through your CMS. It\u2019s the cheapest of the three visibility fixes.',
       cta:{ label:'Review the markup' } }
   ];
 
@@ -4432,23 +4400,23 @@
   const COL_STATUS = {
     about: {
       title: 'Reading your brand into memory',
-      sub:   'Everything your store already says about who you are \u2014 the voice, the claims, the palette, the way you name things \u2014 read once and written into a single memory that every agent works from.'
+      sub:   'Everything your store already says about who you are: the voice, the claims, the palette, the way you name things. It\u2019s read once and written into a single memory every agent works from.'
     },
     creatives: {
       title: 'Reading your creative direction',
-      sub:   'The frames, hooks and edits that already hold attention on your channels, ranked by what actually landed, so the next brief starts from your best work instead of a blank page.'
+      sub:   'The frames, hooks and edits that already hold attention on your channels \u2014 ranked by what actually landed. The next brief starts from your best work, not a blank page.'
     },
     ads: {
       title: 'Going through 30 days of spend',
-      sub:   'Every set from the last month read line by line \u2014 frequency, cost per sale, and the audiences seeing you too often \u2014 to separate what deserves more budget from what is quietly burning it.'
+      sub:   'Every set from the last month, read line by line: frequency, cost per sale, and the audiences seeing you too often. The goal is separating what deserves more budget from what\u2019s quietly burning it.'
     },
     storefront: {
       title: 'Walking your store end-to-end',
-      sub:   'The whole path your average customer takes, from landing on a collection to finishing checkout, clicked through the way they would \u2014 noting what is slow, what is missing, and what is sitting in drafts.'
+      sub:   'The whole path your average customer takes, from landing on a collection to finishing checkout \u2014 clicked through the way they would. It notes what\u2019s slow, what\u2019s missing, and what\u2019s sitting in drafts.'
     },
     visibility: {
       title: 'Asking the AI assistants about you',
-      sub:   'What the assistants say back when someone asks about your category rather than your name, whether you appear in that answer at all, and which of your competitors they reach for instead.'
+      sub:   'What the assistants say when someone asks about your category, not your name. Whether you show up in that answer at all, and which competitors they reach for instead.'
     }
   };
   // one card per column, at the top of the column body: the matrix where a
@@ -4519,7 +4487,7 @@
   // Not a post (not in ALL_POSTS), so it never enters the deck or the agent chips
   const INTRO = {
     title:'This is your feed',
-    sub:'Every day your agents post recommendations to improve your creative, ads, catalog, visibility and CRM. Each one is a suggestion with the work already drafted behind it. Nothing happens until you approve it, and you can remix it with the agent that made it, or jam with the human team first.',
+    sub:'Every day your agents post recommendations to improve your creative, ads, catalog, visibility and CRM. Each one is a suggestion, with the work already drafted behind it. Nothing happens until you approve it. Remix it with the agent that made it, or jam with the human team first.',
     slides:[
       // each slide is a finished illustration; c/c2 stay as the fallback wash while it loads
       // all three images share one near-black blue, so the colour that shows

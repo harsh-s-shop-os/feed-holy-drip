@@ -2,6 +2,12 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-22 — Rare Rabbit's image swapped in; every post description rewritten for readability
+
+- **Rare Rabbit shot-standard post.** Swapped in the real House of Rare campaign image supplied for the post. That image is a finished ad — their own logo, headline and store tags baked into the frame — not a raw product shot, so the copy was rewritten to say that plainly: it's their ad, not a shot, and it can't run in a multi-brand catalog as-is.
+- **Every post description across the feed rewritten.** The long, comma-stacked sentences (multiple clauses joined by "and," dense em-dash asides) were broken up into short, plain sentences instead — one idea per sentence, one em-dash aside at most. Covers all ten Catalog/Creative/Ads/Visibility posts, all six data-row posts, the five column-status blurbs shown while the deck loads, the CMS-connect card, and the feed's own intro card. No claims changed, only how they're said.
+- **Cut a redundant line.** The Ads engagement-ad post no longer ends with "needs your Meta account to go live" — the button next to it already says Meta, so the line was just restating what's visible.
+
 ## 2026-09-21 — No more video/reel language on posts; carousels now storefront-only
 
 Two changes across the whole feed, not just Catalog:
