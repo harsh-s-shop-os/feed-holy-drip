@@ -741,6 +741,7 @@
   .rows > div:last-child{padding-bottom:0}
   .rows .k{color:var(--fg-2);min-width:0}
   .rows .v{color:var(--fg);text-align:right;flex:0 0 auto;font-variant-numeric:tabular-nums}
+  .rows .v .pct{color:var(--fg-3);font-weight:400;font-size:12.5px;margin-left:2px}
   .card.is-data .card-body{padding-top:16px}
 
   /* ---------- sub bar: chips on the left, layout switch on the right ---------- */
@@ -3955,11 +3956,11 @@
     { agent:'storefront', time:'12 min', ratio:'square',
       images:['assets/hd-rr-shirt-campaign.jpg'],
       title:'Apply the shot standard to Rare Rabbit',
-      sub:'This is their ad, not a product shot. House of Rare\u2019s logo and headline are baked into the frame, so it can\u2019t run next to five other brands in the catalog. Approving requests a plain reshoot, to the same standard used on The Cloud Tee.',
+      sub:'This is their ad, not a product shot \u2014 House of Rare\u2019s logo is baked into the frame. Approving requests a plain reshoot, to the same standard as The Cloud Tee.',
       cta:{ label:'Approve the standard' } },
 
     { agent:'creative', time:'20 min', ratio:'square', campaign:'Manifesto Drop',
-      images:['assets/hd-reel-indian-men.jpg'],
+      images:['assets/hd-cb-jkt-campaign.jpg'],
       title:'Write the next drop announcement as a manifesto post',
       sub:'Identity posts land at half a million likes \u2014 more than anything else on the account. One version is ready to generate: a single serif line on maroon velvet, no product in frame. Approving generates it for review.',
       cta:{ label:'Generate the post' } },
@@ -3977,31 +3978,31 @@
         ]
       },
       title:'Run the two manifesto posts as awareness ads to lookalikes',
-      sub:'Both posts cleared half a million likes organically, but only ever reached people the algorithm already knew. The set is drafted against lookalikes of your engagers \u2014 no product, no call to action. It buys reach for the brand, not the drop. Approving builds it.',
+      sub:'Both posts cleared half a million likes but only reached people the algorithm already knew. The set targets lookalikes of your engagers \u2014 no product, no CTA. Approving builds it.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'storefront', time:'40 min', ratio:'square',
       images:['assets/hd-cb-jkt-front.jpg'],
-      title:'Publish Codebrwn as a live listing',
-      sub:'Intake is complete and on standard. Approving adds it to the site catalog, under The Cloud Tee.',
+      title:'Publish Codebrwn as the new live listing',
+      sub:'Intake is complete and on standard. Approving takes Codebrwn live and retires The Cloud Tee as the featured drop \u2014 this replaces it, it doesn\u2019t sit alongside it.',
       cta:{ label:'Publish the listing' } },
 
     { agent:'creative', time:'1 hr', ratio:'square', campaign:'Fit Rules',
       images:['assets/hd-styled-trio.jpg'],
       title:'Shoot the Cloud Tee on the three body types from Drip Tips',
-      sub:'The account already coaches three body types \u2014 V-shaped, shorter and broader, tall and lean \u2014 but the drop is shot on one model. One image is ready to generate: all three builds, styled side by side in the same Cloud Tee. Approving generates it.',
+      sub:'Drip Tips coaches three body types, but the drop is shot on one model. One image is ready: all three builds, styled side by side in the Cloud Tee. Approving generates it.',
       cta:{ label:'Generate the image' } },
 
     { agent:'storefront', time:'1 hr', ratio:'square',
-      images:['assets/hd-brand-story.jpg','assets/hd-ultimate-tee.jpg'],
+      images:['assets/hd-brand-story.jpg'],
       title:'Add a HolyDrip verdict block above the product spec',
-      sub:'The drop page reads as the seller’s, not HolyDrip’s \u2014 nothing on it says why to buy here instead of direct. The block is written: tested twenty, picked one, exclusive colour made for members. Approving publishes it through your CMS, above the existing spec.',
+      sub:'The drop page reads as the seller\u2019s, not HolyDrip\u2019s. The block is written: tested twenty, picked one, member-exclusive colour. Approving publishes it above the spec.',
       cta:{ label:'Publish the block' } },
 
     { agent:'creative', time:'2 hr', ratio:'square', campaign:'Tested 20',
       images:['assets/hd-lab-qr.jpg'],
       title:'Turn the twenty-brand test into a shareable graphic',
-      sub:'Your strongest claim about the drop has never been written down anywhere a buyer can save or send it. One graphic is ready: the tee on a lab bench, scored against the four high-street names you tested it against. Approving generates it.',
+      sub:'Your strongest claim about the drop has never been written down. One graphic is ready: the tee on a lab bench, scored against the four names you tested it against. Approving generates it.',
       cta:{ label:'Generate the graphic' } },
 
     { agent:'visibility', time:'3 hr',
@@ -4009,7 +4010,7 @@
         label:d.short, full:`${d.label} · ${d.weight}% of the score`, value:d.value,
         color:['#ff375f','#a8ff2e','#22d3ee'][i] })) },
       title:'Publish one page that tells engines what HolyDrip is',
-      sub:`Ask an engine where Indian men buy premium basics, and it names Myntra, Ajio and Amazon. HolyDrip has 410k followers but nothing an engine can actually read. The score is ${GEO.score} \u2014 the three weakest dimensions carry ${GEO.lowWeight}% of it. The report sets out what the page needs to say.`,
+      sub:`Ask an engine where Indian men buy premium basics and it names Myntra, Ajio, Amazon \u2014 never HolyDrip, despite 410k followers. GEO score: ${GEO.score}. The report sets out what the page needs to say.`,
       cta:{ label:'Open report' } },
 
     { agent:'storefront', time:'5 hr', ratio:'square',
@@ -4335,48 +4336,54 @@
   // short, data-led posts: a badge, a small table, then the decision
   const TEXT_POSTS = [
     { agent:'performance', time:'6 min', ratio:'square', badge:['Needs you','info'],
-      images:['assets/hd-reel-ultimate-indian-tee.jpg'],
+      images:['assets/hd-cloudtee-campaign.jpg'],
       title:'Run the drop post as an engagement ad with an auto reply',
       sub:'4,535 comments on that post, every one answered by hand so far. Approving runs the same post as an engagement ad, with an automated reply that sends the access link.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'performance', time:'50 min', badge:['Watching','info'],
-      rows:[['Commented DRIP','4,535'],['Unlocked member price','1,210'],
-            ['Commented, never unlocked','3,325'],['Reachable as post engagers','all of them']],
+      rows:[['Commented DRIP','4,535 <span class=\'pct\'>(100%)</span>'],
+            ['Unlocked member price','1,210 <span class=\'pct\'>(27%)</span>'],
+            ['Commented, never unlocked','3,325 <span class=\'pct\'>(73%)</span>']],
       title:'Build a retargeting audience from the DRIP commenters',
-      sub:'Three thousand of them commented and never unlocked the member price. Meta already holds them as post engagers, so this needs no pixel and no site. Approving uploads the audience and queues one reminder \u2014 in the colourway they asked about.',
+      sub:'Three thousand commented and never unlocked the member price. Meta already holds them as post engagers \u2014 no pixel or site needed. Approving uploads the audience and queues one reminder.',
       cta:{ label:'Approve the audience', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'storefront', time:'2 hr', badge:['Needs you','info'],
-      rows:[['Members who unlocked','1,210'],['Asked for the number again','every drop'],
-            ['Drops so far','1'],['Proposed','remember the unlock']],
+      rows:[['Commented DRIP','4,535'],
+            ['Unlocked the member price','1,210 <span class=\'pct\'>(27%)</span>'],
+            ['Drops this has happened on','1']],
       title:'Store the member unlock so returning buyers skip the gate',
-      sub:'Twelve hundred people have handed over a number, and every new drop asks them for it again. Storing the unlock skips the form for returning members \u2014 first-timers still see the gate. Approving ships the change to your CMS.',
+      sub:'Twelve hundred people have handed over a number, but every new drop asks again. Storing the unlock skips the form for returning members. Approving ships the change to your CMS.',
       cta:{ label:'Approve the change' } },
 
     { agent:'storefront', time:'4 hr', badge:['Sitting idle','warn'],
       rows:[['Drops completed','1'],['Pages that outlive a drop','0'],
-            ['Products live on the site','1'],['Proposed','/drops/cloud-tee, permanent']],
+            ['Products live on the site','1']],
       title:'Give every closed drop a permanent page',
-      sub:'The site forgets each drop the moment the next one starts, so nothing accumulates. The first archive page is drafted at /drops/cloud-tee \u2014 it carries the verdict, the exclusive colour and a sold-out mark. Approving publishes it.',
+      sub:'The site forgets each drop the moment the next one starts. The first archive page is drafted at /drops/cloud-tee, with the verdict and a sold-out mark. Approving publishes it.',
       cta:{ label:'Approve the archive' } },
 
     { agent:'visibility', time:'30 min', badge:['Draft ready','ok'],
-      rows:[['Answers','the heavyweight tee question'],
-            ['Cited there today','myntra, amazon.in, reddit'],
-            ['Goes to','/tested/heavyweight-tees'],
-            ['Still needs','FAQ block and FAQPage markup']],
+      rows:[['The Cloud Tee \u2014 winner', '9.1 <span class=\'pct\'>(vs Uniqlo, Zara, M&S, H&M)</span>'],
+            ['Fabric weight', '260 GSM'],
+            ['Knit &amp; finish', '2mm ottoman, bio-washed'],
+            ['Fit', 'Structured, straight fall'],
+            ['Durability', 'Lab tested to 50+ washes'],
+            ['Craftsmanship', '60+ craftsmen, Tiruppur'],
+            ['Returns', '14-day, over WhatsApp']],
       title:'Publish the heavyweight tee test as a page',
-      sub:'Engines quote ranked tests that show their method. Yours has never been written down anywhere a buyer or an engine can read it. The page is written \u2014 the winning tee at the top, the six criteria under it. Approving publishes it at /tested/heavyweight-tees, and the same shape repeats for every category you test next.',
+      sub:'Engines quote ranked tests \u2014 ask about heavyweight tees and they cite Myntra, Amazon, Reddit, never a brand that\u2019s run one. The page is written. Approving publishes it at /tested/heavyweight-tees.',
       cta:{ label:'Review the draft' } },
 
     { agent:'visibility', time:'6 hr', badge:['Sitting idle','warn'],
-      rows:[['410k followers','no organisation record'],
-            ['Two handles, one brand','not linked anywhere'],
-            ['The twenty-brand test','not attributed to HolyDrip'],
-            ['Brand mentions score', `${GEO.dims[3].value} of 100`]],
+      rows:[['HolyDrip', `${GEO.ledger.holydrip}`],
+            [GEO.sources[0][0], `${GEO.sources[0][1]}`],
+            [GEO.sources[1][0], `${GEO.sources[1][1]}`],
+            [GEO.sources[2][0], `${GEO.sources[2][1]}`],
+            [GEO.sources[3][0], `${GEO.sources[3][1]}`]],
       title:'Add Organization markup linking the site and both handles',
-      sub:'Nothing tells an engine that HolyDrip is a store \u2014 that\u2019s why brand mentions score 14 out of 100. The markup is written, covering the site, both Instagram handles and the founder story. Approving adds it through your CMS. It\u2019s the cheapest of the three visibility fixes.',
+      sub:'Nothing tells an engine that HolyDrip is a store \u2014 competitors get cited by name, HolyDrip once. The markup is written, covering the site, both handles and the founder story. Approving adds it through your CMS.',
       cta:{ label:'Review the markup' } }
   ];
 
@@ -4437,7 +4444,7 @@
   // catalog is its own segment: the product feed itself, mostly the creative director
   const CATALOG = new Set([
     'Apply the shot standard to Rare Rabbit',
-    'Publish Codebrwn as a live listing',
+    'Publish Codebrwn as the new live listing',
     'Open Socks with Mint & Oak',
     'Open Bags with Dedh-Shana'
   ]);
@@ -4445,43 +4452,6 @@
   const byAgent = (k) => ALL_POSTS.filter(p => sectorOf(p) === k);
 
   // some work needs an account we cannot see yet, so the agent asks for it in the feed
-  const CONNECTS = {
-    shopify: {
-      agent:'storefront', name:'HolyDrip CMS',
-      title:'Connect the CMS to publish the changes, not only draft them',
-      sub:'The verdict block, the drop archive and the member unlock are drafted already. Pushing any of them live needs write access to your stack.',
-      items:['Publish a block to the drop page','Remember a member unlock','Keep a drop page after it closes'],
-      logo:'plug', color:'currentColor'
-    }
-  };
-
-  const connectCard = (id) => {
-    const c = CONNECTS[id], a = AGENTS[c.agent];
-    return `
-    <article class="card is-connect" data-connect-card="${id}">
-      <div class="card-head">
-        <img class="avatar" src="${a.avatar}" alt="">
-        <span class="identity">
-          <span class="agent-name">${a.name}</span>
-        </span>
-        <span class="badge warn">Not connected</span>
-      </div>
-
-      <div class="cn-body">
-        <h2 class="card-title">${c.title}</h2>
-        <p class="card-sub">${c.sub}</p>
-        <ul class="cn-list">
-          ${c.items.map(t => `<li>${svg(I.lock, 14)}${t}</li>`).join('')}
-        </ul>
-      </div>
-
-      <button class="btn btn-primary btn-bar" data-connect-go="${id}">
-        <span class="lead">${svg(I[c.logo], 18, c.color)} Connect ${c.name}</span>
-        ${svg(I.chevronRight, 18)}
-      </button>
-    </article>`;
-  };
-
 
   // the intro card: what the feed is and the three things you do with it.
   // Not a post (not in ALL_POSTS), so it never enters the deck or the agent chips
@@ -4677,8 +4647,6 @@
 
   const deckEl = document.getElementById('deck');
 
-  const COL_CONNECT = { storefront:'shopify', catalog:'shopify' };
-
   const colHTML = (k, empty) => {
     const cards = empty ? [] : byAgent(k);
     return `
@@ -4707,7 +4675,7 @@
         <div class="col-body">
           ${colStatusHTML(k)}
           ${k === 'signals' ? '<div class="sig-body" id="sig-body"></div>' : ''}
-          ${cards.map((c, i) => card(c) + (COL_CONNECT[k] && i === 1 ? connectCard(COL_CONNECT[k]) : '')).join('')}
+          ${cards.map(c => card(c)).join('')}
           <p class="col-end"${(empty || k === 'signals') ? ' hidden' : ''}>You are caught up on ${SECTORS[k].name.toLowerCase()}.</p>
         </div>
         <span class="grab" role="separator" aria-orientation="vertical" aria-label="Column width"></span>
@@ -4970,26 +4938,6 @@
   window.addEventListener('blur', endDrag);
 
   // ---- chips and the layout switch, from either sub bar
-  // the connect nudge: asking for access is one tap, the rest is the agent's problem
-  document.addEventListener('click', (e) => {
-    const go = e.target.closest('[data-connect-go]');
-    if (!go) return;
-    const id = go.dataset.connectGo, c = CONNECTS[id];
-    document.querySelectorAll(`[data-connect-go="${id}"]`).forEach(btn => {
-      btn.disabled = true;
-      btn.innerHTML = `<span class="lead">${svg(I.check, 18)} ${c.name} connected</span>`;
-    });
-    document.querySelectorAll(`[data-connect-card="${id}"]`).forEach(el => {
-      const b = el.querySelector('.badge');
-      if (b) { b.className = 'badge ok'; b.textContent = 'Connected'; }
-      const when = el.querySelectorAll('.identity .meta')[1];
-      if (when) when.textContent = 'just now';
-      const h = el.querySelector('.card-title');
-      if (h) h.textContent = `${c.name} is connected. Those three are unlocked.`;
-      el.querySelectorAll('.cn-list li').forEach(li => li.style.color = 'var(--fg-2)');
-    });
-    toast(`${c.name} connected. ${AGENTS[c.agent].name} can act on it now.`);
-  });
 
   document.addEventListener('click', (e) => {
     const fb = e.target.closest('.fdrop-btn');
@@ -5211,20 +5159,9 @@
     return order;
   };
   const FEED_ORDER = interleave(POSTS, TEXT_POSTS, DECK_ONLY.filter(p => !p.deckOnly));
-  // anchored to specific cards rather than fixed indexes, so the two connect
-  // prompts land after the same posts no matter how interleave() orders the rest
-  // matched by title, not array position -- POSTS gets edited (cards added,
-  // removed, commented out) independently of this file, and an index here
-  // would silently point at the wrong card the next time it does
-  const FEED_CONNECT_AFTER = {
-    shopify: ALL_POSTS.find(p => p.title === 'Store the member unlock so returning buyers skip the gate')
-  };
-
-
   document.getElementById('feed').insertAdjacentHTML('beforeend',
     (introWanted ? introCard() : '') +
-    FEED_ORDER.map(c => card(c) +
-      (c === FEED_CONNECT_AFTER.shopify ? connectCard('shopify') : '')).join(''));
+    FEED_ORDER.map(c => card(c)).join(''));
   paintSubbars();
   wireIntro();
 
