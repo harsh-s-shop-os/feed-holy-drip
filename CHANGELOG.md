@@ -2,6 +2,15 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-21 — Fixed a content/image mismatch, gave one Ads post an image
+
+Two follow-up fixes after re-checking every post against what it actually shows:
+
+- **Catalog — Rare Rabbit shot-standard post.** The copy still talked about reordering multiple shots ("on-model, then construction, then colour") after the post had been trimmed to a single image, so the post no longer supported its own claim. Rewritten to describe the seller's shot not matching HolyDrip's own template, which a single image can actually show.
+- **Ads — "Run the drop reel as an engagement ad."** Was rows-only with no visual, for a post that's fundamentally about a specific reel. Now carries that reel's cover (`hd-reel-ultimate-indian-tee.jpg`) and the comment count folded into the sub line as a sentence instead of a table.
+
+Left as-is: the retargeting-audience post (Ads) stays rows-only since there's no real creative to attach to an audience-building recommendation, and the three other catalog posts already carried an image that matched their copy.
+
 ## 2026-09-21 — Catalog posts trimmed: one SKU each, one image each, shorter copy
 
 Follow-up to the same-day catalog rebuild. The four posts mixed sellers in carousels and ran long. Reworked all four to one SKU per post, one image per post (no carousels), and one-sentence descriptions:
