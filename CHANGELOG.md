@@ -2,6 +2,15 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-21 — No more video/reel language on posts; carousels now storefront-only
+
+Two changes across the whole feed, not just Catalog:
+
+- **No post proposes generating a video or reel anymore.** Six posts referenced or implied video work (a reel cut, a triptych "frame," a six-slide carousel described as a reel, "spoken aloud in a reel"). Rewritten to describe a single generated image or an existing post instead: the manifesto post now generates one image, not three reel versions; the twenty-brand carousel is now a single shareable graphic; the Drip Tips triptych is now one composited image; the two Ads/visibility posts that referenced "reel" now say "post" and read correctly against the single image or page they already point to.
+- **Carousels are now storefront-only.** Any post whose agent wasn't `storefront` and carried more than one image was cut down to its single strongest image, with copy rewritten to match — this affected the manifesto, Drip Tips and twenty-brand posts above. The one remaining carousel in the feed (the verdict-block post) belongs to Storefront and was left as-is.
+
+Copy was rewritten in lockstep with every image cut, not just trimmed, to avoid the same content/image mismatch flagged in the entry above.
+
 ## 2026-09-21 — Fixed a content/image mismatch, gave one Ads post an image
 
 Two follow-up fixes after re-checking every post against what it actually shows:

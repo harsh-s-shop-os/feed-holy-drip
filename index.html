@@ -3913,7 +3913,7 @@
      colour stays punchy. the gradient rotates slowly; the eyes hold, then make
      small saccades. hue is a brand-derived value. four shapes, four agents. */
   const FACE = {
-    creative:   ['tri',       255],
+    creative:   ['diamond',   255],
     performance:['hex',       315],
     storefront: ['square',     15],
     visibility: ['circle',     75],
@@ -3922,10 +3922,10 @@
   const FSHAPE = {
     square:'<rect x="8" y="8" width="84" height="84" rx="25" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="0"/>',
     circle:'<circle cx="50" cy="50" r="45" fill="var(--fg2)"/>',
-    hex:'<polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="14" stroke-linejoin="round"/>',
-    tri:'<polygon points="50,14 86,78 14,78" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="17" stroke-linejoin="round"/>'
+    hex:'<polygon points="50,12.2 84.2,32 84.2,68 50,87.8 15.8,68 15.8,32" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="12" stroke-linejoin="round"/>',
+    diamond:'<rect x="12" y="12" width="76" height="76" rx="20" fill="var(--fg2)" stroke="var(--fg2)" stroke-width="0" transform="rotate(45 50 50)"/>'
   };
-  const FECY = { square:50, circle:50, hex:52, tri:60 };
+  const FECY = { square:50, circle:50, hex:52, diamond:50 };
   const fLC = (h) => { const ty = Math.cos((h-95)*Math.PI/180); return [0.63+0.10*ty, 0.175-0.02*ty]; };
   const fcol = (h,dl=0,dh=0) => { const [L,C]=fLC(h+dh); return `oklch(${(L+dl).toFixed(3)} ${C.toFixed(3)} ${(h+dh).toFixed(1)})`; };
   let _fid = 0;
@@ -3934,7 +3934,7 @@
     const f = FACE[key];
     if (!f) return `<img class="${cls}" src="${(AGENTS[key]||{}).avatar || 'assets/agent-orchestrator.svg'}" alt="">`;
     const [shape, h] = f, id = 'f' + (_fid++), ecy = FECY[shape];
-    const eye = (x) => `<rect x="${x}" y="${ecy-8}" width="10" height="16" rx="5"/>`;
+    const eye = (x) => `<rect x="${x}" y="${ecy-8}" width="10" height="16" rx="5" fill="#fff"/>`;
     const ph = -(Math.random()*5).toFixed(2), gdur = (14+Math.random()*5).toFixed(1), dur = (9+Math.random()*3).toFixed(1);
     const sac = () => (1.1 + Math.random()*0.8).toFixed(1) * (Math.random()<.5?-1:1);
     const v = `0 0; 0 0; ${sac()} ${sac()}; ${sac()} ${sac()}; 0 0; 0 0; ${sac()} ${sac()}; 0 0`;
@@ -3946,14 +3946,11 @@
           <stop offset="0" stop-color="${fcol(h,-0.05)}"/><stop offset="1" stop-color="${fcol(h,0.12,30)}"/>
           <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="${gdur}s" begin="${ph}s" repeatCount="indefinite"/>
         </linearGradient>
-        <mask id="${id}m" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
-          <rect width="100" height="100" fill="#fff"/>
-          <g fill="#000">${eye(33)}${eye(57)}
-            <animateTransform attributeName="transform" type="translate" values="${v}" keyTimes="0;0.3;0.36;0.5;0.56;0.76;0.82;1" calcMode="spline" keySplines="${ks}" dur="${dur}s" begin="${ph}s" repeatCount="indefinite"/>
-          </g>
-        </mask>
       </defs>
-      <g mask="url(#${id}m)">${shapeMarkup}</g>
+      ${shapeMarkup}
+      <g>${eye(33)}${eye(57)}
+        <animateTransform attributeName="transform" type="translate" values="${v}" keyTimes="0;0.3;0.36;0.5;0.56;0.76;0.82;1" calcMode="spline" keySplines="${ks}" dur="${dur}s" begin="${ph}s" repeatCount="indefinite"/>
+      </g>
     </svg>`;
   }
 
@@ -3994,10 +3991,10 @@
       cta:{ label:'Approve the standard' } },
 
     { agent:'creative', time:'20 min', ratio:'square', campaign:'Manifesto Drop',
-      images:['assets/hd-reel-indian-men.jpg','assets/hd-ultimate-tee.jpg'],
+      images:['assets/hd-reel-indian-men.jpg'],
       title:'Write the next drop announcement as a manifesto post',
-      sub:'Drop reels land around 8k. The identity posts land at half a million. Three versions are ready to generate: one serif line on maroon velvet, the tee revealed only in the final frame. Approving generates all three for review.',
-      cta:{ label:'Generate 3 versions' } },
+      sub:'Identity posts land at half a million likes, more than anything else on the account. One version is ready to generate: a single serif line on maroon velvet, no product in frame. Approving generates it for review.',
+      cta:{ label:'Generate the post' } },
 
     { agent:'performance', time:'35 min',
       chart:{
@@ -4007,11 +4004,11 @@
         rows:[
           { label:'Identity manifesto',   value:557, brand:true },
           { label:'Celebrity breakdown',  value:235 },
-          { label:'Drop reel',            value:8 },
+          { label:'Drop post',            value:8 },
           { label:'Drip tips',            value:6 }
         ]
       },
-      title:'Run the two manifesto reels as awareness ads to lookalikes',
+      title:'Run the two manifesto posts as awareness ads to lookalikes',
       sub:'Both cleared half a million likes organically and have only ever reached the people the algorithm picked. The set is drafted against lookalikes of your engagers, no product in frame and no call to action, so it buys reach for the brand rather than the drop. Approving builds it.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
@@ -4022,10 +4019,10 @@
       cta:{ label:'Publish the listing' } },
 
     { agent:'creative', time:'1 hr', ratio:'square', campaign:'Fit Rules',
-      images:['assets/hd-styled-trio.jpg','assets/hd-reel-v-shaped.jpg'],
+      images:['assets/hd-styled-trio.jpg'],
       title:'Shoot the Cloud Tee on the three body types from Drip Tips',
-      sub:'The account already coaches V-shaped, shorter and broader, and tall and lean, while the drop is shot on one model. A triptych is ready to generate, each panel captioned with the rule you already teach. Approving generates the three frames.',
-      cta:{ label:'Generate the triptych' } },
+      sub:'The account already coaches V-shaped, shorter and broader, and tall and lean, while the drop is shot on one model. One image is ready to generate, all three builds styled side by side in the same Cloud Tee. Approving generates it.',
+      cta:{ label:'Generate the image' } },
 
     { agent:'storefront', time:'1 hr', ratio:'square',
       images:['assets/hd-brand-story.jpg','assets/hd-ultimate-tee.jpg'],
@@ -4034,10 +4031,10 @@
       cta:{ label:'Publish the block' } },
 
     { agent:'creative', time:'2 hr', ratio:'square', campaign:'Tested 20',
-      images:['assets/hd-heavy-not-hot.jpg','assets/hd-lasts-4-years.jpg','assets/hd-lab-qr.jpg','assets/hd-reel-ultimate-indian-tee.jpg'],
-      title:'Build a six-slide carousel from the twenty-brand test',
-      sub:'The strongest claim you make about a drop exists only as a spoken line in a reel, so nobody can save it or send it on. Six slides are laid out, one test criterion each, the tee on a lab bench with its score against the four high-street names you tested it on. Approving generates the set.',
-      cta:{ label:'Generate the carousel' } },
+      images:['assets/hd-lab-qr.jpg'],
+      title:'Turn the twenty-brand test into a shareable graphic',
+      sub:'The strongest claim you make about a drop has never been written down anywhere a buyer can save it or send it on. One graphic is ready: the tee on a lab bench with its score against the four high-street names you tested it against. Approving generates it.',
+      cta:{ label:'Generate the graphic' } },
 
     { agent:'visibility', time:'3 hr',
       rings:{ score:GEO.score, rings:GEO.lowThree.map((d, i) => ({
@@ -4371,8 +4368,8 @@
   const TEXT_POSTS = [
     { agent:'performance', time:'6 min', ratio:'square', badge:['Needs you','info'],
       images:['assets/hd-reel-ultimate-indian-tee.jpg'],
-      title:'Run the drop reel as an engagement ad with an auto reply',
-      sub:'4,535 comments on that reel, every one answered by hand so far. Approving runs the same cut as an engagement ad with an automated reply that sends the access link \u2014 needs your Meta account to go live.',
+      title:'Run the drop post as an engagement ad with an auto reply',
+      sub:'4,535 comments on that post, every one answered by hand so far. Approving runs the same post as an engagement ad with an automated reply that sends the access link \u2014 needs your Meta account to go live.',
       cta:{ label:'Review the set', logo:'meta', brandColor:'#0866FF' } },
 
     { agent:'performance', time:'50 min', badge:['Watching','info'],
@@ -4402,7 +4399,7 @@
             ['Goes to','/tested/heavyweight-tees'],
             ['Still needs','FAQ block and FAQPage markup']],
       title:'Publish the heavyweight tee test as a page',
-      sub:'Engines quote ranked tests that show their method, and yours is only ever spoken aloud in a reel. The page is written, the winning tee at the top and the six criteria under it. Approving publishes it at /tested/heavyweight-tees, and the same shape repeats for every category you test next.',
+      sub:'Engines quote ranked tests that show their method, and yours has never been written down anywhere a buyer or an engine can read it. The page is written, the winning tee at the top and the six criteria under it. Approving publishes it at /tested/heavyweight-tees, and the same shape repeats for every category you test next.',
       cta:{ label:'Review the draft' } },
 
     { agent:'visibility', time:'6 hr', badge:['Sitting idle','warn'],
