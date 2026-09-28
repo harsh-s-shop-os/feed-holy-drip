@@ -2,6 +2,13 @@
 
 Human-readable log of what changed in the onboarding prototype, for product review. Updated at each local commit — most recent first.
 
+## 2026-09-28 — Two content fixes from the VP feedback call
+
+- **Voice and tone card (Brand Memory / About).** Was quoting Cloud Tee product copy ("Heavy, not hot. Lasts 4 years.") as the brand's voice and tone. The VP flagged this directly: that line is the first drop talking about its own fabric, not HolyDrip talking as a marketplace. Rewritten to describe the brand's actual claimed voice — styling authority ("five ways to wear it, knows what pairs with what") that belongs to HolyDrip curating, not to one seller pitching a product. Added a "Styling-led" tag to match.
+- **Ads column onboarding status.** The blurb shown while the Ads column builds ("Going through 30 days of spend... frequency, cost per sale") assumed an existing ad account with spend history. HolyDrip has no ad account live yet — this was flagged in the same call. Rewritten to say the read starts on Instagram, since there is no spend yet to read.
+
+Not touched this pass (needs more input before editing): catalog/SKU framing, ad campaign ideas, storefront/PDP specifics, GEO/visibility copy — all fine per the VP or waiting on further direction.
+
 ## 2026-09-22 — Rare Rabbit's image swapped in; every post description rewritten for readability
 
 - **Rare Rabbit shot-standard post.** Swapped in the real House of Rare campaign image supplied for the post. That image is a finished ad — their own logo, headline and store tags baked into the frame — not a raw product shot, so the copy was rewritten to say that plainly: it's their ad, not a shot, and it can't run in a multi-brand catalog as-is.
